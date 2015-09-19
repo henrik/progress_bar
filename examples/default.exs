@@ -1,4 +1,4 @@
-IO.puts "Rendering progress with an interval:"
+IO.puts "Default bar:"
 
 Enum.each 1..100, fn (i) ->
   ProgressBar.render(i, 100)
