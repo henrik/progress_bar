@@ -2,8 +2,6 @@
 
 Text progress bars!
 
-**Work in progress**, sometimes with README-driven development. May not yet do what it says below.
-
 Do you have a use case not listed below? Please open an issue or pull request! This library is intended to be maximalist and unopinionated.
 
 
