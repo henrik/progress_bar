@@ -27,11 +27,8 @@ defmodule ProgressBar do
       format[:right],
       formatted_percent(format[:percent], percent),
       bytes(format[:bytes], current, total),
+      newline_if_complete(current, total),
     ]
-  end
-
-  def done do
-    IO.write "\n"
   end
 
   # Private
@@ -52,4 +49,7 @@ defmodule ProgressBar do
   defp mb(bytes) do
     bytes / 1_048_576 |> Float.round(2)
   end
+
+  defp newline_if_complete(total, total), do: "\n"
+  defp newline_if_complete(_, _), do: ""
 end

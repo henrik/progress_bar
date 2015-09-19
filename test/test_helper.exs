@@ -2,14 +2,14 @@ ExUnit.start()
 
 defmodule ProgressBarAssertions do
   defmacro assert_bar({:==, _, [rendering, expected]}) do
-    captured_io = quote do
+    actual = quote do
       ExUnit.CaptureIO.capture_io(fn -> unquote(rendering) end)
+      |> String.replace(~r/^\e\[2K\r/, "")
+      |> String.replace(~r/\n$/, "")
     end
 
-    expected_with_ansi = "\e[2K\r" <> expected
-
     quote do
-      assert unquote(captured_io) == unquote(expected_with_ansi)
+      assert unquote(actual) == unquote(expected)
     end
   end
 end

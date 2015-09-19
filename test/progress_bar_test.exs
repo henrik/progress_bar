@@ -15,6 +15,14 @@ defmodule ProgressBarTest do
     assert String.starts_with?(bar, "\e[2K\r")
   end
 
+  test "adds a newline when complete" do
+    incomplete_bar = capture_io(fn -> ProgressBar.render(1, 2) end)
+    completed_bar = capture_io(fn -> ProgressBar.render(2, 2) end)
+
+    refute String.ends_with?(incomplete_bar, "\n")
+    assert String.ends_with?(completed_bar, "\n")
+  end
+
   test "custom format" do
     format = [
       bar: "X",
@@ -36,9 +44,5 @@ defmodule ProgressBarTest do
     assert_bar ProgressBar.render(0, mb, bytes: true)      == "|                                                                                                    |   0% (0.0/1.0 MB)"
     assert_bar ProgressBar.render((mb/2), mb, bytes: true) == "|==================================================                                                  |  50% (0.5/1.0 MB)"
     assert_bar ProgressBar.render(mb, mb, bytes: true)     == "|====================================================================================================| 100% (1.0 MB)"
-  end
-
-  test ".done" do
-    assert capture_io(fn -> ProgressBar.done end) == "\n"
   end
 end
