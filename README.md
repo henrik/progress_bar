@@ -7,7 +7,7 @@ Do you have a use case not listed below? Please open an issue or pull request! T
 
 ## Usage
 
-Specify the current value and the total value, and a bar will be rendered to STDOUT:
+Specify the current value and the total value, and a bar will be rendered to STDOUT.
 
 ``` elixir
 ProgressBar.render(2, 3)
@@ -51,7 +51,7 @@ To see it in action, clone this repo and run the example scripts:
 
 ### Customize format
 
-Replace the `bar`, `blank`, `left` or `right` characters:
+Replace the `bar`, `blank`, `left` or `right` characters.
 
 ``` elixir
 format = [
@@ -68,11 +68,11 @@ Output:
 
     …XXXXXXXXX...)  97%
 
-You can provide empty-string values to e.g. remove `left` and `right` entirely.
+You can provide empty-string values to remove `left` and `right` entirely.
 
 ### `percent: false`
 
-Hides the percent shown after the bar:
+Hides the percent shown after the bar.
 
 ``` elixir
 ProgressBar.render(1, 1, percent: false)
@@ -84,7 +84,7 @@ Output:
 
 ### `bytes: true`
 
-This option causes the values to be treated as bytes of data, showing those amounts next to the bar:
+This option causes the values to be treated as bytes of data, showing those amounts next to the bar.
 
 ``` elixir
 ProgressBar.render(2_034_237, 2_097_152)
