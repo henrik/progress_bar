@@ -2,7 +2,7 @@ IO.puts "Rendering progress with an interval:"
 
 Enum.each 1..100, fn (i) ->
   ProgressBar.render(i..100)
-  :timer.sleep 15
+  :timer.sleep 30
 end
 
 # The progress bar works by redrawing the same output line.
