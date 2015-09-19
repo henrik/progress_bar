@@ -37,7 +37,7 @@ Add the dependency to your project's `mix.exs`:
 ``` elixir
 defp deps do
   [
-    {:progress_bar},
+    {:progress_bar, "> 0.0.0"},
   ]
 end
 ```
