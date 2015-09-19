@@ -8,6 +8,8 @@ defmodule ProgressBar do
     right: "|",
     percent: true,
     bytes: false,
+    bar_color: [],
+    blank_color: [],
   ]
 
   def render(current, total, custom_format \\ @default_format) do
@@ -22,8 +24,8 @@ defmodule ProgressBar do
       @ansi_clear_line, # So a shorter line can replace a previous, longer line.
       "\r", # Back to beginning of line.
       format[:left],
-      bar,
-      blank,
+      color(bar, format[:bar_color]),
+      color(blank, format[:blank_color]),
       format[:right],
       formatted_percent(format[:percent], percent),
       bytes(format[:bytes], current, total),
@@ -32,6 +34,11 @@ defmodule ProgressBar do
   end
 
   # Private
+
+  defp color(content, []), do: content
+  defp color(content, ansi_codes) do
+    [ ansi_codes, content, IO.ANSI.reset ]
+  end
 
   defp formatted_percent(false, _), do: ""
   defp formatted_percent(true, number) do

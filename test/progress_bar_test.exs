@@ -39,6 +39,20 @@ defmodule ProgressBarTest do
     assert_bar ProgressBar.render(2, 3, format) == "|XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX                                 ]  67%"
   end
 
+  test "custom color" do
+    format = [
+      bar_color: [IO.ANSI.white, IO.ANSI.green_background],
+      blank_color: IO.ANSI.red_background,
+    ]
+
+    bar = capture_io(fn -> ProgressBar.render(1, 2, format) end)
+
+    assert bar =~ IO.chardata_to_string(["|", IO.ANSI.white, IO.ANSI.green_background, "="])
+    assert bar =~ IO.chardata_to_string(["=", IO.ANSI.reset, IO.ANSI.red_background, " "])
+    assert bar =~ IO.chardata_to_string([" ", IO.ANSI.reset])
+  end
+
+
   test ".render with bytes: true" do
     mb = 1_048_576
     assert_bar ProgressBar.render(0, mb, bytes: true)      == "|                                                                                                    |   0% (0.0/1.0 MB)"

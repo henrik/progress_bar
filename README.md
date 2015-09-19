@@ -68,6 +68,19 @@ Output:
 
 You can provide empty-string values to remove `left` and `right` entirely.
 
+### Customize color
+
+Specify [IO.ANSI values](http://elixir-lang.org/docs/v1.0/elixir/IO.ANSI.html) as `bar_color` or `blank_color`. Use lists for multiple values.
+
+``` elixir
+format = [
+  bar_color: [IO.ANSI.white, IO.ANSI.green_background],
+  blank_color: IO.ANSI.red_background,
+]
+
+ProgressBar.render(97, 100, format)
+```
+
 ### `percent: false`
 
 Hides the percent shown after the bar.
