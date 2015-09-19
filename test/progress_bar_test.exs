@@ -9,12 +9,18 @@ defmodule ProgressBarTest do
     assert capture_io(fn -> ProgressBar.render(3..3) end) == "\r|===| 100%"
   end
 
-  test ".render with custom format" do
-    format = [bar: "X", blank: "O", left: ":", right: "", percent: false]
-    assert capture_io(fn -> ProgressBar.render(2..3, format) end) == "\r:XXO"
+  test "custom format" do
+    format = [
+      bar: "X",
+      blank: ".",
+      left: "(",
+      right: ")",
+      percent: false,
+    ]
+    assert capture_io(fn -> ProgressBar.render(2..3, format) end) == "\r(XX.)"
   end
 
-  test ".render with custom format falls back to defaults" do
+  test "custom format falls back to defaults" do
     format = [bar: "X", right: "]"]
     assert capture_io(fn -> ProgressBar.render(2..3, format) end) == "\r|XX ]  67%"
   end
