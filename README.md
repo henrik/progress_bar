@@ -9,18 +9,22 @@ Do you have a use case not listed below? Please open an issue or pull request! T
 
 Specify the current value and the total value, and a bar will be rendered to STDOUT:
 
-    ProgressBar.render(2, 3)
+``` elixir
+ProgressBar.render(2, 3)
+```
 
-    # Output:
+Output:
 
     [===================================================================                                 |  67%
 
 Call the function again and it will overwrite the previous bar with the new value:
 
-    ProgressBar.render(2, 3)
-    ProgressBar.render(3, 3)
+``` elixir
+ProgressBar.render(2, 3)
+ProgressBar.render(3, 3)
+```
 
-    # Output:
+Output:
 
     [====================================================================================================| 100%
 
@@ -30,10 +34,12 @@ When the bar becomes full, a newline is automatically printed, so any subsequent
 
 It's up to you to re-render the bar when something changes. Here's a trivial example of an animated progress bar:
 
-    Enum.each 1, 100, fn (i) ->
-      ProgressBar.render(i, 100)
-      :timer.sleep 25
-    end
+``` elixir
+Enum.each 1, 100, fn (i) ->
+  ProgressBar.render(i, 100)
+  :timer.sleep 25
+end
+```
 
 To see it in action, clone this repo and run the example scripts:
 
@@ -47,15 +53,18 @@ To see it in action, clone this repo and run the example scripts:
 
 Replace the `bar`, `blank`, `left` or `right` characters:
 
-    format = [
-      bar: "X",   # default: "="
-      blank: ".", # default: " "
-      left: "(",  # default: "|"
-      right: ")", # default: "|"
-    ]
-    ProgressBar.render(97, 100, format)
+``` elixir
+format = [
+  bar: "X",   # default: "="
+  blank: ".", # default: " "
+  left: "(",  # default: "|"
+  right: ")", # default: "|"
+]
 
-    # Output:
+ProgressBar.render(97, 100, format)
+```
+
+Output:
 
     …XXXXXXXXX...)  97%
 
@@ -65,9 +74,11 @@ You can provide empty-string values to e.g. remove `left` and `right` entirely.
 
 Hides the percent shown after the bar:
 
-    ProgressBar.render(1, 1, percent: false)
+``` elixir
+ProgressBar.render(1, 1, percent: false)
+```
 
-    # Output:
+Output:
 
     …============|
 
@@ -75,9 +86,11 @@ Hides the percent shown after the bar:
 
 This option causes the values to be treated as bytes of data, showing those amounts next to the bar:
 
-    ProgressBar.render(2_034_237, 2_097_152)
+``` elixir
+ProgressBar.render(2_034_237, 2_097_152)
+```
 
-    # Output:
+Output:
 
     …=========   |  97% (1.94/2.0 MB)
 
@@ -96,16 +109,12 @@ end
 
 Then fetch it:
 
-```
-mix deps.get
-```
+    mix deps.get
 
 
 ## Tests
 
-```
-mix test
-```
+    mix test
 
 
 ## Credits and license
