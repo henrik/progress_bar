@@ -34,10 +34,10 @@ If you clone this repo, you can run some example scripts to see it in action:
 Replace the `bar`, `blank`, `left` or `right` characters:
 
     format = [
-      bar: "X",
-      blank: ".",
-      left: "(",
-      right: ")",
+      bar: "X",   # default: "="
+      blank: ".", # default: " "
+      left: "(",  # default: "|"
+      right: ")", # default: "|"
     ]
     ProgressBar.render(97, 100, format)
 
