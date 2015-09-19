@@ -4,8 +4,6 @@ Text progress bars!
 
 **Work in progress**, sometimes with README-driven development. May not yet do what it says below.
 
-Inspired by Jeff Felchner's [ruby-progressbar](https://github.com/jfelchner/ruby-progressbar/wiki/Basic-Usage).
-
 Do you have a use case not listed below? Please open an issue or pull request! This library is intended to be maximalist and unopinionated.
 
 
@@ -58,6 +56,8 @@ mix test
 ```
 
 
-## License
+## Credits and license
 
 By Henrik Nyh 2015-09-19 under the MIT license.
+
+Loosely inspired by Jeff Felchner's [ruby-progressbar](https://github.com/jfelchner/ruby-progressbar/wiki/Basic-Usage).
