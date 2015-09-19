@@ -2,7 +2,7 @@
 
 Text progress bars!
 
-**Work in progress** with README-driven development. May not yet do what it says below.
+**Work in progress**, sometimes with README-driven development. May not yet do what it says below.
 
 Inspired by Jeff Felchner's [ruby-progressbar](https://github.com/jfelchner/ruby-progressbar/wiki/Basic-Usage).
 
@@ -20,6 +20,8 @@ Do you have a use case not listed below? Please open an issue or pull request! T
     # The progress bar works by redrawing the same output line.
     # So for any following output to end up below, we need to output a newline.
     ProgressBar.done
+
+TODO: More examples here, including the output. Until then, see the tests and example scripts.
 
 If you clone this repo, you can run some example scripts to see it in action:
 
