@@ -52,7 +52,6 @@ defmodule ProgressBarTest do
     assert bar =~ IO.chardata_to_string([" ", IO.ANSI.reset])
   end
 
-
   test ".render with bytes: true" do
     mb = 1_048_576
     assert_bar ProgressBar.render(0, mb, bytes: true)      == "|                                                                                                    |   0% (0.0/1.0 MB)"
