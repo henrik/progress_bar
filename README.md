@@ -87,7 +87,7 @@ Output:
 This option causes the values to be treated as bytes of data, showing those amounts next to the bar.
 
 ``` elixir
-ProgressBar.render(2_034_237, 2_097_152)
+ProgressBar.render(2_034_237, 2_097_152, bytes: true)
 ```
 
 Output:
