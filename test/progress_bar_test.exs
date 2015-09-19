@@ -4,14 +4,14 @@ defmodule ProgressBarTest do
   import ProgressBarAssertions
 
   test "renders a bar" do
-    assert_bar ProgressBar.render(0..3) == "|                                                                                                    |   0%"
-    assert_bar ProgressBar.render(1..3) == "|=================================                                                                   |  33%"
-    assert_bar ProgressBar.render(2..3) == "|===================================================================                                 |  67%"
-    assert_bar ProgressBar.render(3..3) == "|====================================================================================================| 100%"
+    assert_bar ProgressBar.render(0, 3) == "|                                                                                                    |   0%"
+    assert_bar ProgressBar.render(1, 3) == "|=================================                                                                   |  33%"
+    assert_bar ProgressBar.render(2, 3) == "|===================================================================                                 |  67%"
+    assert_bar ProgressBar.render(3, 3) == "|====================================================================================================| 100%"
   end
 
   test "includes ANSI sequences to clear and re-write the line" do
-    bar = capture_io(fn -> ProgressBar.render(1..1) end)
+    bar = capture_io(fn -> ProgressBar.render(1, 1) end)
     assert String.starts_with?(bar, "\e[2K\r")
   end
 
@@ -23,19 +23,19 @@ defmodule ProgressBarTest do
       right: ")",
       percent: false,
     ]
-    assert_bar ProgressBar.render(2..3, format) == "(XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX.................................)"
+    assert_bar ProgressBar.render(2, 3, format) == "(XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX.................................)"
   end
 
   test "custom format falls back to defaults" do
     format = [bar: "X", right: "]"]
-    assert_bar ProgressBar.render(2..3, format) == "|XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX                                 ]  67%"
+    assert_bar ProgressBar.render(2, 3, format) == "|XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX                                 ]  67%"
   end
 
   test ".render with bytes: true" do
     mb = 1_048_576
-    assert_bar ProgressBar.render(0..mb, bytes: true)      == "|                                                                                                    |   0% (0.0/1.0 MB)"
-    assert_bar ProgressBar.render((mb/2)..mb, bytes: true) == "|==================================================                                                  |  50% (0.5/1.0 MB)"
-    assert_bar ProgressBar.render(mb..mb, bytes: true)     == "|====================================================================================================| 100% (1.0 MB)"
+    assert_bar ProgressBar.render(0, mb, bytes: true)      == "|                                                                                                    |   0% (0.0/1.0 MB)"
+    assert_bar ProgressBar.render((mb/2), mb, bytes: true) == "|==================================================                                                  |  50% (0.5/1.0 MB)"
+    assert_bar ProgressBar.render(mb, mb, bytes: true)     == "|====================================================================================================| 100% (1.0 MB)"
   end
 
   test ".done" do

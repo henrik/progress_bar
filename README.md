@@ -10,8 +10,8 @@ Do you have a use case not listed below? Please open an issue or pull request! T
 ## Usage
 
     # Render progress from 1–100% with a 25 ms interval:
-    Enum.each 1..100, fn (i) ->
-      ProgressBar.render(i..100)
+    Enum.each 1, 100, fn (i) ->
+      ProgressBar.render(i, 100)
       :timer.sleep 25
     end
 
@@ -39,7 +39,7 @@ Replace the `bar`, `blank`, `left` or `right` characters:
       left: "(",
       right: ")",
     ]
-    ProgressBar.render(97..100, format)
+    ProgressBar.render(97, 100, format)
 
     # Output:
 
@@ -51,7 +51,7 @@ You can provide empty-string values to e.g. remove `left` and `right` entirely.
 
 Hides the percent shown after the bar:
 
-    ProgressBar.render(1..1, percent: false)
+    ProgressBar.render(1, 1, percent: false)
 
     # Output:
 
@@ -61,7 +61,7 @@ Hides the percent shown after the bar:
 
 This option causes the values to be treated as bytes of data, showing those amounts next to the bar:
 
-    ProgressBar.render(2_034_237..2_097_152)
+    ProgressBar.render(2_034_237, 2_097_152)
 
     # Output:
 
