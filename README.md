@@ -17,6 +17,7 @@ Specify the current value and the total value, and a bar will be rendered to STD
 
 Call the function again and it will overwrite the previous bar with the new value:
 
+    ProgressBar.render(2, 3)
     ProgressBar.render(3, 3)
 
     # Output:
