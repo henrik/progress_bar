@@ -1,31 +1,38 @@
 defmodule ProgressBar do
-  def render(current..total, custom_format \\ default_format) do
-    format = Keyword.merge(default_format, custom_format)
+  @default_format [
+    bar: "=",
+    blank: " ",
+    left: "|",
+    right: "|",
+    percent: true,
+  ]
+
+  def render(current..total, custom_format \\ @default_format) do
+    format = Keyword.merge(@default_format, custom_format)
 
     bar = String.duplicate(format[:bar], current)
     blank = String.duplicate(format[:blank], total - current)
 
-    formatted_percent = if format[:percent] do
-      number = current / total * 100 |> Float.round |> trunc |> Integer.to_string
-      " " <> String.rjust(number, 3) <> "%"
-    else
-      ""
-    end
-
-    IO.write "\r#{format[:left]}#{bar}#{blank}#{format[:right]}#{formatted_percent}"
+    IO.write [
+      "\r",
+      format[:left],
+      bar,
+      blank,
+      format[:right],
+      formatted_percent(format[:percent], current, total),
+    ]
   end
 
   def done do
     IO.write "\n"
   end
 
-  defp default_format do
-    [
-      bar: "=",
-      blank: " ",
-      left: "|",
-      right: "|",
-      percent: true,
-    ]
+  # Private
+
+  defp formatted_percent(false, _current, _total), do: ""
+  defp formatted_percent(true, current, total) do
+    percent = current / total * 100
+    pretty = percent |> Float.round |> trunc |> Integer.to_string
+    " " <> String.rjust(pretty, 3) <> "%"
   end
 end
