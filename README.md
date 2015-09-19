@@ -29,6 +29,34 @@ If you clone this repo, you can run some example scripts to see it in action:
     # Run an example.
     mix run examples/render.exs
 
+### Customize format
+
+Replace the `bar`, `blank`, `left` or `right` characters:
+
+    format = [
+      bar: "X",
+      blank: ".",
+      left: "(",
+      right: ")",
+    ]
+    ProgressBar.render(97..100, format)
+
+    # Output:
+
+    …XXXXXXXXX...)  97%
+
+You can provide empty-string values to e.g. remove `left` and `right` entirely.
+
+### `percent: false`
+
+Hides the percent shown after the bar:
+
+    ProgressBar.render(1..1, percent: false)
+
+    # Output:
+
+    …============|
+
 ### `bytes: true`
 
 This option causes the values to be treated as bytes of data, showing those amounts next to the bar:
