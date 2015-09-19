@@ -9,25 +9,40 @@ Do you have a use case not listed below? Please open an issue or pull request! T
 
 ## Usage
 
-    # Render progress from 1–100% with a 25 ms interval:
+Specify the current value and the total value, and a bar will be rendered to STDOUT:
+
+    ProgressBar.render(2, 3)
+
+    # Output:
+
+    [===================================================================                                 |  67%
+
+Call the function again and it will overwrite the previous bar with the new value:
+
+    ProgressBar.render(3, 3)
+
+    # Output:
+
+    [====================================================================================================| 100%
+
+This basically works by printing "\r[===…" each time, without a newline. The text cursor will return to the beginning of the line and overwrite the previous value.
+
+When the bar becomes full, a newline is automatically printed, so any subsequent output gets its own line.
+
+It's up to you to re-render the bar when something changes. Here's a trivial example of an animated progress bar:
+
     Enum.each 1, 100, fn (i) ->
       ProgressBar.render(i, 100)
       :timer.sleep 25
     end
 
-    # The progress bar works by redrawing the same output line.
-    # So for any following output to end up below, we need to output a newline.
-    ProgressBar.done
-
-TODO: More examples here, including the output. Until then, see the tests and example scripts.
-
-If you clone this repo, you can run some example scripts to see it in action:
+To see it in action, clone this repo and run the example scripts:
 
     # See what's available.
     ls examples
 
     # Run an example.
-    mix run examples/render.exs
+    mix run examples/default.exs
 
 ### Customize format
 
