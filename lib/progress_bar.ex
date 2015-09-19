@@ -5,7 +5,14 @@ defmodule ProgressBar do
     bar = String.duplicate(format[:bar], current)
     blank = String.duplicate(format[:blank], total - current)
 
-    IO.write "\r#{format[:left]}#{bar}#{blank}#{format[:right]}"
+    formatted_percent = if format[:percent] do
+      number = current / total * 100 |> Float.round |> trunc |> Integer.to_string
+      " " <> String.rjust(number, 3) <> "%"
+    else
+      ""
+    end
+
+    IO.write "\r#{format[:left]}#{bar}#{blank}#{format[:right]}#{formatted_percent}"
   end
 
   def done do
@@ -18,6 +25,7 @@ defmodule ProgressBar do
       blank: " ",
       left: "|",
       right: "|",
+      percent: true,
     ]
   end
 end
