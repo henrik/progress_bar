@@ -1,8 +1,6 @@
 # ProgressBar for Elixir
 
-Text progress bars!
-
-Do you have a use case not listed below? Please open an issue or pull request! This library is intended to be maximalist and unopinionated.
+Do you have a use case not listed below? Please open an issue or pull request!
 
 
 ## Usage
