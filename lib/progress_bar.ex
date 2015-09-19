@@ -1,0 +1,2 @@
+defmodule ProgressBar do
+end
