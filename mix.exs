@@ -6,7 +6,7 @@ defmodule ProgressBar.Mixfile do
       app: :progress_bar,
       version: "0.0.5",
       elixir: "~> 1.0",
-      description: "Text progress bars!",
+      description: "Text progress bars.",
       package: package,
       build_embedded: Mix.env == :prod,
       start_permanent: Mix.env == :prod,
