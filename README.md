@@ -59,5 +59,3 @@ mix test
 ## Credits and license
 
 By Henrik Nyh 2015-09-19 under the MIT license.
-
-Loosely inspired by Jeff Felchner's [ruby-progressbar](https://github.com/jfelchner/ruby-progressbar/wiki/Basic-Usage).
