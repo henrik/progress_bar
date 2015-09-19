@@ -29,6 +29,16 @@ If you clone this repo, you can run some example scripts to see it in action:
     # Run an example.
     mix run examples/render.exs
 
+### `bytes: true`
+
+This option causes the values to be treated as bytes of data, showing those amounts next to the bar:
+
+    ProgressBar.render(2_034_237..2_097_152)
+
+    # Output:
+
+    …=========   |  97% (1.94/2.0 MB)
+
 
 ## Installation
 

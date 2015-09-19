@@ -1,25 +1,32 @@
 defmodule ProgressBar do
+  @ansi_clear_line "\e[2K"
+
   @default_format [
     bar: "=",
     blank: " ",
     left: "|",
     right: "|",
     percent: true,
+    bytes: false,
   ]
 
   def render(current..total, custom_format \\ @default_format) do
     format = Keyword.merge(@default_format, custom_format)
 
-    bar = String.duplicate(format[:bar], current)
-    blank = String.duplicate(format[:blank], total - current)
+    percent = current / total * 100 |> Float.round |> trunc
+
+    bar = String.duplicate(format[:bar], percent)
+    blank = String.duplicate(format[:blank], 100 - percent)
 
     IO.write [
-      "\r",
+      @ansi_clear_line, # So a shorter line can replace a previous, longer line.
+      "\r", # Back to beginning of line.
       format[:left],
       bar,
       blank,
       format[:right],
-      formatted_percent(format[:percent], current, total),
+      formatted_percent(format[:percent], percent),
+      bytes(format[:bytes], current, total),
     ]
   end
 
@@ -29,10 +36,20 @@ defmodule ProgressBar do
 
   # Private
 
-  defp formatted_percent(false, _current, _total), do: ""
-  defp formatted_percent(true, current, total) do
-    percent = current / total * 100
-    pretty = percent |> Float.round |> trunc |> Integer.to_string
-    " " <> String.rjust(pretty, 3) <> "%"
+  defp formatted_percent(false, _), do: ""
+  defp formatted_percent(true, number) do
+    " " <> String.rjust(Integer.to_string(number), 3) <> "%"
+  end
+
+  defp bytes(false, _, _), do: ""
+  defp bytes(true, total, total) do
+    " (#{mb total} MB)"
+  end
+  defp bytes(true, current, total) do
+    " (#{mb current}/#{mb total} MB)"
+  end
+
+  defp mb(bytes) do
+    bytes / 1_048_576 |> Float.round(2)
   end
 end
