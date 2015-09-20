@@ -105,6 +105,58 @@ Output:
 
     …=========   |  97% (1.94/2.0 MB)
 
+### Indeterminate progress
+
+``` elixir
+# Show an indeterminate progress bar.
+ProgressBar.render_indeterminate
+
+# Do something for an indeterminate amount of time…
+:timer.sleep 2000
+
+# Show the progress bar as done.
+ProgressBar.terminate
+```
+
+It will alternate between two forms:
+
+    |-=-=-=…
+    |=-=-=-…
+
+And show as done when you terminate it:
+
+    |======…
+
+You can customize the millisecond interval at which it alternates:
+
+``` elixir
+ProgressBar.render_indeterminate(interval: 10)
+```
+
+And the two forms, as well as the done state:
+
+``` elixir
+ProgressBar.render_indeterminate(
+  bars: [ "Oo", "o0" ],
+  done: "X"
+)
+```
+
+The two forms can each be any length evenly divisible by 100, and will repeat as appropriate.
+
+You can customize the color of the bar, and of the completed state:
+
+``` elixir
+ProgressBar.render_indeterminate(
+  bars_color: IO.ANSI.yellow,
+  done_color: IO.ANSI.green,
+)
+```
+
+You can pass multiple `IO.ANSI` values, just as with a regular progress bar. The indeterminate bar intentionally doesn't alternate between colors, so as not to trigger epileptic seizures…
+
+You can also customize the `left` and `right` bookends, as with a reegular progress bar.
+
 
 ## Installation
 
