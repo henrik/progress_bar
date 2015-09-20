@@ -148,7 +148,7 @@ ProgressBar.render_indeterminate(
 )
 ```
 
-The two `bars` forms can each be any length evenly divisible by 100, and will repeat as appropriate.
+The two `bars` forms can each be any length by which 100 is evenly divisible (e.g. 1, 2, 4, 5, 10…), and will repeat as appropriate.
 
 #### Customize color
 
