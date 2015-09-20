@@ -142,7 +142,9 @@ You can customize the two forms it alternates between, as well as the done state
 ``` elixir
 ProgressBar.render_indeterminate(
   bars: [ "Oo", "o0" ],
-  done: "X"
+  done: "X",
+  left: "",
+  right: "",
 )
 ```
 
