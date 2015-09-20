@@ -85,7 +85,7 @@ format = [
 ProgressBar.render(97, 100, format)
 ```
 
-### `percent: false`
+#### `percent: false`
 
 Hides the percent shown after the bar.
 
@@ -110,6 +110,10 @@ Output:
     …=========   |  97% (1.94/2.0 MB)
 
 ### Indeterminate progress bars
+
+Indeterminate progress bars will animate on their own, once you start them off. It's up to you to terminate them when done.
+
+Don't output anything else while they are animating, as they will keep rewriting the current output line.
 
 ``` elixir
 # Show an indeterminate progress bar.
