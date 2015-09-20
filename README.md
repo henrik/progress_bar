@@ -141,14 +141,14 @@ You can customize the two forms it alternates between, as well as the done state
 
 ``` elixir
 ProgressBar.render_indeterminate(
-  bars: [ "Oo", "o0" ],
+  bars: [ "Oo", "oO" ],
   done: "X",
   left: "",
   right: "",
 )
 ```
 
-The two forms can each be any length evenly divisible by 100, and will repeat as appropriate.
+The two `bars` forms can each be any length evenly divisible by 100, and will repeat as appropriate.
 
 #### Customize color
 
