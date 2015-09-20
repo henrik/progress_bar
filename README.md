@@ -5,6 +5,10 @@ Do you have a use case not listed below? Please open an issue or pull request!
 
 ## Usage
 
+You can render regular ("determinate") progress bars, or "indeterminate" ones that animate but don't indicate the current progress.
+
+### Determinate progress bars
+
 Specify the current value and the total value, and a bar will be rendered to STDOUT.
 
 ``` elixir
@@ -13,7 +17,7 @@ ProgressBar.render(2, 3)
 
 Output:
 
-    [===================================================================                                 |  67%
+    |===================================================================                                 |  67%
 
 Call the function again and it will overwrite the previous bar with the new value:
 
@@ -24,7 +28,7 @@ ProgressBar.render(3, 3)
 
 Output:
 
-    [====================================================================================================| 100%
+    |====================================================================================================| 100%
 
 This basically works by printing "\r[===…" each time, without a newline. The text cursor will return to the beginning of the line and overwrite the previous value.
 
@@ -47,7 +51,7 @@ To see it in action, clone this repo and run the example scripts:
     # Run an example.
     mix run examples/default.exs
 
-### Customize format
+#### Customize format
 
 Replace the `bar`, `blank`, `left` or `right` characters.
 
@@ -68,7 +72,7 @@ Output:
 
 You can provide empty-string values to remove `left` and `right` entirely.
 
-### Customize color
+#### Customize color
 
 Specify [IO.ANSI values](http://elixir-lang.org/docs/v1.0/elixir/IO.ANSI.html) as `bar_color` or `blank_color`. Use lists for multiple values.
 
@@ -93,7 +97,7 @@ Output:
 
     …============|
 
-### `bytes: true`
+#### `bytes: true`
 
 This option causes the values to be treated as bytes of data, showing those amounts next to the bar.
 
@@ -105,7 +109,7 @@ Output:
 
     …=========   |  97% (1.94/2.0 MB)
 
-### Indeterminate progress
+### Indeterminate progress bars
 
 ``` elixir
 # Show an indeterminate progress bar.
