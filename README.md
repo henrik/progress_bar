@@ -135,14 +135,6 @@ And show as done when you terminate it:
 
     |==========================================…
 
-#### Interval
-
-You can customize the millisecond interval at which it alternates.
-
-``` elixir
-ProgressBar.render_indeterminate(interval: 10)
-```
-
 #### Customize format
 
 You can customize the two forms it alternates between, as well as the done state, and the `left` and `right` bookends.
@@ -168,6 +160,14 @@ ProgressBar.render_indeterminate(
 ```
 
 You can pass multiple `IO.ANSI` values, just as with a regular progress bar. The indeterminate bar intentionally doesn't alternate between colors, so as not to trigger epileptic seizures…
+
+#### Interval
+
+You can customize the millisecond interval at which it alternates. The default is 500 milliseconds.
+
+``` elixir
+ProgressBar.render_indeterminate(interval: 10)
+```
 
 
 ## Installation
