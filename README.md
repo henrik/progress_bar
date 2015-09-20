@@ -3,6 +3,17 @@
 Do you have a use case not listed below? Please open an issue or pull request!
 
 
+## Examples
+
+To see it in action, clone this repo and run the example scripts:
+
+    # See what's available.
+    ls examples
+
+    # Run an example.
+    mix run examples/default.exs
+
+
 ## Usage
 
 You can render regular ("determinate") progress bars, or "indeterminate" ones that animate but don't indicate the current progress.
@@ -42,14 +53,6 @@ Enum.each 1, 100, fn (i) ->
   :timer.sleep 25
 end
 ```
-
-To see it in action, clone this repo and run the example scripts:
-
-    # See what's available.
-    ls examples
-
-    # Run an example.
-    mix run examples/default.exs
 
 #### Customize format
 
