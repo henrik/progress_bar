@@ -116,7 +116,7 @@ Indeterminate progress bars will animate on their own, once you start them off. 
 Don't output anything else while they are animating, as they will keep rewriting the current output line.
 
 ``` elixir
-# Show an indeterminate progress bar.
+# Start it.
 ProgressBar.render_indeterminate
 
 # Do something for an indeterminate amount of time…
