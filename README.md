@@ -128,20 +128,24 @@ ProgressBar.terminate
 
 It will alternate between two forms:
 
-    |-=-=-=…
-    |=-=-=-…
+    |-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=…
+    |=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-…
 
 And show as done when you terminate it:
 
-    |======…
+    |==========================================…
 
-You can customize the millisecond interval at which it alternates:
+#### Interval
+
+You can customize the millisecond interval at which it alternates.
 
 ``` elixir
 ProgressBar.render_indeterminate(interval: 10)
 ```
 
-And the two forms, as well as the done state:
+#### Customize format
+
+You can customize the two forms it alternates between, as well as the done state, and the `left` and `right` bookends.
 
 ``` elixir
 ProgressBar.render_indeterminate(
@@ -152,7 +156,9 @@ ProgressBar.render_indeterminate(
 
 The two forms can each be any length evenly divisible by 100, and will repeat as appropriate.
 
-You can customize the color of the bar, and of the completed state:
+#### Customize color
+
+You can customize the color of the bar, and of the completed state.
 
 ``` elixir
 ProgressBar.render_indeterminate(
@@ -162,8 +168,6 @@ ProgressBar.render_indeterminate(
 ```
 
 You can pass multiple `IO.ANSI` values, just as with a regular progress bar. The indeterminate bar intentionally doesn't alternate between colors, so as not to trigger epileptic seizures…
-
-You can also customize the `left` and `right` bookends, as with a reegular progress bar.
 
 
 ## Installation
