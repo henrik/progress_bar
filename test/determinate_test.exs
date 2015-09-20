@@ -52,7 +52,7 @@ defmodule DeterminateTest do
     assert bar =~ IO.chardata_to_string([" ", IO.ANSI.reset])
   end
 
-  test ".render with bytes: true" do
+  test "bytes: true" do
     mb = 1_048_576
     assert_bar ProgressBar.render(0, mb, bytes: true)      == "|                                                                                                    |   0% (0.0/1.0 MB)"
     assert_bar ProgressBar.render((mb/2), mb, bytes: true) == "|==================================================                                                  |  50% (0.5/1.0 MB)"
