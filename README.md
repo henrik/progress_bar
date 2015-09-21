@@ -109,6 +109,8 @@ Output:
 
     …=========   |  97% (1.94/2.0 MB)
 
+This is great with [progressive downloads](https://gist.github.com/henrik/108e5fc23b66131fc3aa).
+
 ### Indeterminate progress bars
 
 Indeterminate progress bars will animate on their own, once you start them off. It's up to you to terminate them when done.
