@@ -90,7 +90,7 @@ ProgressBar.render(97, 100, format)
 
 #### `percent: false`
 
-Hides the percent shown after the bar.
+Hides the percentage shown after the bar.
 
 ``` elixir
 ProgressBar.render(1, 1, percent: false)
@@ -99,6 +99,10 @@ ProgressBar.render(1, 1, percent: false)
 Output:
 
     …============|
+
+Instead of:
+
+    …============| 100%
 
 #### `bytes: true`
 
