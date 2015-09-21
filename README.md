@@ -7,10 +7,13 @@ Do you have a use case not listed below? Please open an issue or pull request!
 
 To see it in action, clone this repo and run the example scripts:
 
+    # Run all examples.
+    mix run examples/all.exs
+
     # See what's available.
     ls examples
 
-    # Run an example.
+    # Run a single example.
     mix run examples/default.exs
 
 
