@@ -120,7 +120,7 @@ Output:
 
 Indeterminate progress bars will animate on their own, once you start them off. It's up to you to terminate them when done.
 
-Don't output anything else while they are animating, as they will keep rewriting the current output line.
+Don't output anything else while this bar is animating, as it will keep rewriting the current output line.
 
 ``` elixir
 # Start it.
