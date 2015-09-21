@@ -2,26 +2,12 @@
 
 ![Screenshot](https://s3.amazonaws.com/f.cl.ly/items/2v0m3J3u1j2W43462e2F/progress_bar.gif)
 
-Do you have a use case not listed below? Please open an issue or pull request!
-
-
-## Examples
-
-To see it in action, clone this repo and run the example scripts:
-
-    # Run all examples.
-    mix run examples/all.exs
-
-    # See what's available.
-    ls examples
-
-    # Run a single example.
-    mix run examples/default.exs
-
 
 ## Usage
 
 You can render regular ("determinate") progress bars, or "indeterminate" ones that animate but don't indicate the current progress.
+
+Do you have a use case not listed below? Please open an issue or pull request!
 
 ### Determinate progress bars
 
@@ -186,6 +172,20 @@ You can customize the millisecond interval at which it alternates. The default i
 ``` elixir
 ProgressBar.render_indeterminate(interval: 10)
 ```
+
+
+## Examples
+
+To see these bad boys in action, clone this repo and run the example scripts:
+
+    # Run all examples.
+    mix run examples/all.exs
+
+    # See what's available.
+    ls examples
+
+    # Run a single example.
+    mix run examples/default.exs
 
 
 ## Installation
