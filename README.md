@@ -189,6 +189,8 @@ To see these bad boys in action, clone this repo and run the example scripts:
     # Run a single example.
     mix run examples/default.exs
 
+Or to see them in a real project, try [Sipper](https://github.com/henrik/sipper).
+
 
 ## Installation
 
