@@ -17,9 +17,11 @@ Specify the current value and the total value, and a bar will be rendered to STD
 ProgressBar.render(2, 3)
 ```
 
-Output (you may need to scroll right to see the whole thing):
+Output:
 
-    |===================================================================                                 |  67%
+    |==================================                |  67%
+
+(Shortened to fit GitHub's layout. The bar will be 100 characters wide.)
 
 Call the function again and it will overwrite the previous bar with the new value:
 
@@ -30,7 +32,7 @@ ProgressBar.render(3, 3)
 
 Output:
 
-    |====================================================================================================| 100%
+    |==================================================| 100%
 
 This basically works by printing "\r[===…" each time, without a newline. The text cursor will return to the beginning of the line and overwrite the previous value.
 
