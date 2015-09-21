@@ -17,7 +17,7 @@ Specify the current value and the total value, and a bar will be rendered to STD
 ProgressBar.render(2, 3)
 ```
 
-Output:
+Output (you may need to scroll right to see the whole thing):
 
     |===================================================================                                 |  67%
 
