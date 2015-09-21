@@ -6,7 +6,7 @@ defmodule ProgressBar.IndeterminateServer do
   # Client API
 
   def start(format) do
-    GenServer.start(__MODULE__, {format, true}, name: :indeterminate)
+    GenServer.start(__MODULE__, {format, 0}, name: :indeterminate)
   end
 
   def stop do
@@ -15,36 +15,36 @@ defmodule ProgressBar.IndeterminateServer do
 
   # GenServer API
 
-  def init(state = {format, flip}) do
+  def init(state = {format, count}) do
     tick(state)
-
-    {:ok, {format, !flip}}
+    {:ok, {format, count + 1}}
   end
 
-  def handle_info(:tick, state = {format, flip}) do
+  def handle_info(:tick, state = {format, count}) do
     tick(state)
-
-    {:noreply, {format, !flip}}
+    {:noreply, {format, count + 1}}
   end
 
-  def handle_call(:stop, _from, {format, interval}) do
+  def handle_call(:stop, _from, {format, count}) do
     render_done(format)
-
-    {:stop, :normal, :ok, {format, interval}}
+    {:stop, :normal, :ok, {format, count}}
   end
 
   # Private
 
-  defp tick({format, flip}) do
-    render_bar(format, flip)
+  defp tick({format, count}) do
+    render_bar(format, count)
 
     interval = format[:interval]
     Process.send_after(self, :tick, interval)
   end
 
-  defp render_bar(format, flip) do
-    [part1, part2] = format[:bars]
-    part = if flip, do: repeat(part1), else: repeat(part2)
+  defp render_bar(format, count) do
+    parts = format[:bars]
+    index = rem(count, length(parts))
+
+    part = Enum.at(parts, index)
+
     bar = part |> repeat |> color(format[:bars_color])
     ProgressBar.Formatter.write(format, bar)
   end

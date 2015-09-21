@@ -1,6 +1,6 @@
 defmodule ProgressBar.Indeterminate do
   @default_format [
-    bars: ["-=", "=-"],
+    bars: ["=---", "-=--", "--=-", "---="],
     done: "=",
     left: "|",
     right: "|",

@@ -14,8 +14,8 @@ defmodule IndeterminateTest do
     bars = io |> String.replace(@ansi_prefix, "\n") |> String.split
     [first_bar, second_bar, last_bar] = bars
 
-    assert first_bar  == "|-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|"
-    assert second_bar == "|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-|"
+    assert first_bar  == "|=---=---=---=---=---=---=---=---=---=---=---=---=---=---=---=---=---=---=---=---=---=---=---=---=---|"
+    assert second_bar  == "|-=---=---=---=---=---=---=---=---=---=---=---=---=---=---=---=---=---=---=---=---=---=---=---=---=--|"
     assert last_bar   == "|====================================================================================================|"
   end
 
@@ -41,8 +41,8 @@ defmodule IndeterminateTest do
     end
 
     # Ongoing bar.
-    assert bars =~ "(-="
-    assert bars =~ "-=)"
+    assert bars =~ "(=-"
+    assert bars =~ "--)"
 
     # Finished bar.
     assert bars =~ "(XX"

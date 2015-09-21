@@ -133,10 +133,12 @@ ProgressBar.render_indeterminate
 ProgressBar.terminate
 ```
 
-It will alternate between two forms:
+It will alternate between four forms by default:
 
-    |-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=…
-    |=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-…
+    |=---=---=---=---=---=---=---=---=---=---=---…
+    |-=---=---=---=---=---=---=---=---=---=---=--…
+    |--=---=---=---=---=---=---=---=---=---=---=-…
+    |---=---=---=---=---=---=---=---=---=---=---=…
 
 And show as done when you terminate it:
 
@@ -144,7 +146,7 @@ And show as done when you terminate it:
 
 #### Customize format
 
-You can customize the two forms it alternates between, as well as the done state, and the `left` and `right` bookends.
+You can customize the forms it alternates between, as well as the done state, and the `left` and `right` bookends.
 
 ``` elixir
 ProgressBar.render_indeterminate(
@@ -155,7 +157,9 @@ ProgressBar.render_indeterminate(
 )
 ```
 
-The two `bars` forms can each be any length by which 100 is evenly divisible (e.g. 1, 2, 4, 5, 10…), and will repeat as appropriate.
+The `bars` list can be any length – the bar will alternate between them and then start over.
+
+Each string in that list can be any length by which 100 is evenly divisible (e.g. 1, 2, 4, 5, 10…), and will repeat into a 100 character bar.
 
 #### Customize color
 
