@@ -21,7 +21,7 @@ Output:
 
     |==================================                |  67%
 
-(Shortened to fit GitHub's layout. The bar will be 100 characters wide.)
+(Shortened to fit GitHub's layout. The bar will really be 100 characters wide.)
 
 Call the function again and it will overwrite the previous bar with the new value:
 
