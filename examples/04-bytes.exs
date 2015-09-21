@@ -1,3 +1,4 @@
+IO.puts ""
 IO.puts "Bytes of data:"
 
 Enum.each 0..3_000, fn (i) ->

@@ -1,3 +1,4 @@
+IO.puts ""
 IO.puts "Indeterminate bar (with custom colors):"
 
 format = [
@@ -8,5 +9,3 @@ format = [
 ProgressBar.render_indeterminate(format)
 :timer.sleep 5000
 ProgressBar.terminate
-
-IO.puts "All done!"

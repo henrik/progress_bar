@@ -1,3 +1,4 @@
+IO.puts ""
 IO.puts "Custom format:"
 
 format = [
