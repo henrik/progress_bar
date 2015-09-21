@@ -55,7 +55,8 @@ defmodule ProgressBar.IndeterminateServer do
   end
 
   defp repeat(bar) do
-    String.duplicate(bar, trunc(@width/String.length(bar)))
+    repetitions = @width/String.length(bar) |> Float.ceil |> trunc
+    String.duplicate(bar, repetitions) |> String.slice(0, @width)
   end
 
   defp color(content, []), do: content

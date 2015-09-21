@@ -154,7 +154,7 @@ ProgressBar.render_indeterminate(
 
 The `bars` list can be any length. Each string in that list is a "frame" in the animation.
 
-Each string in that list can be any length by which 100 is evenly divisible (e.g. 1, 2, 4, 5, 10…), and will repeat into a 100 character bar.
+Each string in that list can be any length and will repeat into a 100 character bar.
 
 The bar will alternate between these strings, and then start over.
 

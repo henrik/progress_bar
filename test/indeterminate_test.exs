@@ -48,4 +48,18 @@ defmodule IndeterminateTest do
     assert bars =~ "(XX"
     assert bars =~ "XX)"
   end
+
+  test "handles custom bars that don't go evenly into the 100 bar width" do
+    format = [
+      bars: ["123"],
+    ]
+
+    bars = capture_io fn ->
+      ProgressBar.render_indeterminate(format)
+      ProgressBar.terminate
+    end
+
+    expected_bar = String.duplicate("123", 33) <> "1"  # "123…1231"
+    assert bars =~ "|#{expected_bar}|"
+  end
 end
