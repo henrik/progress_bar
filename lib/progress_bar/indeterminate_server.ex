@@ -55,8 +55,11 @@ defmodule ProgressBar.IndeterminateServer do
   end
 
   defp repeat(bar) do
-    repetitions = @width/String.length(bar) |> Float.ceil |> trunc
-    String.duplicate(bar, repetitions) |> String.slice(0, @width)
+    bar
+    |> String.graphemes
+    |> Stream.cycle
+    |> Enum.take(@width)
+    |> Enum.join
   end
 
   defp color(content, []), do: content
