@@ -48,7 +48,7 @@ When the bar becomes full, a newline is automatically printed, so any subsequent
 It's up to you to re-render the bar when something changes. Here's a trivial example of an animated progress bar:
 
 ``` elixir
-Enum.each 1, 100, fn (i) ->
+Enum.each 1..100, fn (i) ->
   ProgressBar.render(i, 100)
   :timer.sleep 25
 end
