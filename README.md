@@ -1,5 +1,7 @@
 # ProgressBar for Elixir
 
+![Screenshot](https://s3.amazonaws.com/f.cl.ly/items/2v0m3J3u1j2W43462e2F/progress_bar.gif)
+
 Do you have a use case not listed below? Please open an issue or pull request!
 
 
