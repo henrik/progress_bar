@@ -1,4 +1,6 @@
 defmodule ProgressBar.Formatter do
+  # This may become ANSI.IO.clear_line sometime after Elixir 1.1.0:
+  # https://github.com/elixir-lang/elixir/pull/3755
   @ansi_clear_line "\e[2K"
 
   def write(format, bar, suffix \\ "") do
