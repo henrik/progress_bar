@@ -156,11 +156,9 @@ ProgressBar.render_indeterminate [
 ], fn -> end
 ```
 
-The `bars` list can be any length. Each string in that list is a "frame" in the animation.
+The `bars` list can be any length. Each string in that list is a "frame" in the animation. The bar will alternate between these strings, and then start over.
 
-Each string in that list can be any length and will repeat into a 100 character bar.
-
-The bar will alternate between these strings, and then start over.
+Each string in the list can be any length and will repeat into a 100 character bar.
 
 
 #### Customize color
