@@ -20,7 +20,7 @@ defmodule ProgressBar.IndeterminateServer do
   end
 
   def handle_info(:tick, state) do
-    {:noreply, render_frame(state)}
+    {:noreply, tick(state)}
   end
 
   def handle_call(:stop, _from, {format, count}) do
