@@ -6,11 +6,11 @@ defmodule ProgressBar do
     ProgressBar.Determinate.render(current, total, custom_format)
   end
 
-  def render_indeterminate do
-    ProgressBar.Indeterminate.render
+  def render_indeterminate(fun) do
+    ProgressBar.Indeterminate.render(fun)
   end
-  def render_indeterminate(custom_format) do
-    ProgressBar.Indeterminate.render(custom_format)
+  def render_indeterminate(custom_format, fun) do
+    ProgressBar.Indeterminate.render(custom_format, fun)
   end
 
   def terminate do

@@ -113,19 +113,13 @@ This is great with [progressive downloads](https://gist.github.com/henrik/108e5f
 
 ### Indeterminate progress bars
 
-Indeterminate progress bars will animate on their own, once you start them off. It's up to you to terminate them when done.
-
-Don't output anything else while this bar is animating, as it will keep rewriting the current output line.
+Indeterminate progress bars will animate on their own for the duration of a function you pass to it.
 
 ``` elixir
-# Start it.
-ProgressBar.render_indeterminate
-
-# Do something for an indeterminate amount of time…
-:timer.sleep 2000
-
-# Show the progress bar as done.
-ProgressBar.terminate
+ProgressBar.render_indeterminate fn ->
+  # Do something for an indeterminate amount of time…
+  :timer.sleep 2000
+end
 ```
 
 It will alternate between four forms by default:
@@ -135,7 +129,7 @@ It will alternate between four forms by default:
     |--=---=---=---=---=---=---=---=---=---=---=-…
     |---=---=---=---=---=---=---=---=---=---=---=…
 
-And show as done when you terminate it:
+And then show as done:
 
     |==========================================…
 
@@ -144,12 +138,12 @@ And show as done when you terminate it:
 You can customize the forms it alternates between, as well as the done state, and the `left` and `right` bookends.
 
 ``` elixir
-ProgressBar.render_indeterminate(
+ProgressBar.render_indeterminate [
   bars: [ "Oo", "oO" ],
   done: "X",
   left: "",
   right: "",
-)
+], fn -> end
 ```
 
 The `bars` list can be any length. Each string in that list is a "frame" in the animation.
@@ -164,10 +158,10 @@ The bar will alternate between these strings, and then start over.
 You can customize the color of the bar, and of the completed state.
 
 ``` elixir
-ProgressBar.render_indeterminate(
+ProgressBar.render_indeterminate [
   bars_color: IO.ANSI.yellow,
   done_color: IO.ANSI.green,
-)
+], fn -> end
 ```
 
 You can pass multiple `IO.ANSI` values, just as with a regular progress bar. The indeterminate bar intentionally doesn't alternate between colors, so as not to trigger epileptic seizures…
@@ -177,7 +171,7 @@ You can pass multiple `IO.ANSI` values, just as with a regular progress bar. The
 You can customize the millisecond interval at which it alternates. The default is 500 milliseconds.
 
 ``` elixir
-ProgressBar.render_indeterminate(interval: 10)
+ProgressBar.render_indeterminate([interval: 10], fn -> end)
 ```
 
 

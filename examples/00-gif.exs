@@ -46,8 +46,6 @@ end
 format = [
 ]
 
-ProgressBar.render_indeterminate(format)
-:timer.sleep 3000
-ProgressBar.terminate
+ProgressBar.render_indeterminate(format, fn -> :timer.sleep 3000 end)
 
 IO.puts "\n\n"

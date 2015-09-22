@@ -6,6 +6,4 @@ format = [
   done_color: IO.ANSI.green,
 ]
 
-ProgressBar.render_indeterminate(format)
-:timer.sleep 5000
-ProgressBar.terminate
+ProgressBar.render_indeterminate(format, fn -> :timer.sleep 5000 end)

@@ -9,13 +9,11 @@ defmodule ProgressBar.Indeterminate do
     interval: 500,
   ]
 
-  def render(custom_format \\ @default_format) do
+  def render(custom_format \\ @default_format, fun) do
     format = Keyword.merge(@default_format, custom_format)
 
     ProgressBar.IndeterminateServer.start(format)
-  end
-
-  def terminate do
+    fun.()
     ProgressBar.IndeterminateServer.stop
   end
 end
