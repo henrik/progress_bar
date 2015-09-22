@@ -15,14 +15,12 @@ defmodule ProgressBar.IndeterminateServer do
 
   # GenServer API
 
-  def init(state = {format, count}) do
-    tick(state)
-    {:ok, {format, count + 1}}
+  def init(state) do
+    {:ok, tick(state)}
   end
 
-  def handle_info(:tick, state = {format, count}) do
-    tick(state)
-    {:noreply, {format, count + 1}}
+  def handle_info(:tick, state) do
+    {:noreply, render_frame(state)}
   end
 
   def handle_call(:stop, _from, {format, count}) do
@@ -37,6 +35,8 @@ defmodule ProgressBar.IndeterminateServer do
 
     interval = format[:interval]
     Process.send_after(self, :tick, interval)
+
+    {format, count + 1}
   end
 
   defp render_bar(format, count) do
