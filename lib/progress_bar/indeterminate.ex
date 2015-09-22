@@ -13,7 +13,8 @@ defmodule ProgressBar.Indeterminate do
     format = Keyword.merge(@default_format, custom_format)
 
     ProgressBar.IndeterminateServer.start(format)
-    fun.()
+    value = fun.()
     ProgressBar.IndeterminateServer.stop
+    value
   end
 end

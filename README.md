@@ -133,6 +133,16 @@ And then show as done:
 
     |==========================================…
 
+The return value of the function is passed through, if you want it:
+
+``` elixir
+data = ProgressBar.render_indeterminate fn ->
+  ApiClient.painstakingly_retrieve_data
+end
+
+IO.puts "Finally got the data: #{inspect data}"
+```
+
 #### Customize format
 
 You can customize the forms it alternates between, as well as the done state, and the `left` and `right` bookends.

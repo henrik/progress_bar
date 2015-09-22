@@ -6,9 +6,9 @@ defmodule IndeterminateTest do
 
   test "renders an animated bar" do
     io = capture_io fn ->
-      ProgressBar.render_indeterminate(interval: 10)
-      :timer.sleep(10)
-      ProgressBar.terminate
+      ProgressBar.render_indeterminate [interval: 10], fn ->
+        :timer.sleep(10)
+      end
     end
 
     bars = io |> String.replace(@ansi_prefix, "\n") |> String.split
@@ -21,8 +21,7 @@ defmodule IndeterminateTest do
 
   test "includes ANSI sequences to clear and re-write the line" do
     bars = capture_io fn ->
-      ProgressBar.render_indeterminate
-      ProgressBar.terminate
+      ProgressBar.render_indeterminate fn -> end
     end
 
     assert String.starts_with?(bars, @ansi_prefix)
@@ -36,8 +35,7 @@ defmodule IndeterminateTest do
     ]
 
     bars = capture_io fn ->
-      ProgressBar.render_indeterminate(format)
-      ProgressBar.terminate
+      ProgressBar.render_indeterminate(format, fn -> end)
     end
 
     # Ongoing bar.
@@ -55,11 +53,16 @@ defmodule IndeterminateTest do
     ]
 
     bars = capture_io fn ->
-      ProgressBar.render_indeterminate(format)
-      ProgressBar.terminate
+      ProgressBar.render_indeterminate(format, fn -> end)
     end
 
     expected_bar = String.duplicate("123", 33) <> "1"  # "123…1231"
     assert bars =~ "|#{expected_bar}|"
+  end
+
+  test "passes through the function's return value" do
+    value = ProgressBar.render_indeterminate(fn -> :fun_return end)
+
+    assert value == :fun_return
   end
 end
