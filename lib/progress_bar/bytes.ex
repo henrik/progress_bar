@@ -1,6 +1,6 @@
 defmodule ProgressBar.Bytes do
   def format(bytes) do
-    "#{bytes |> to_mb |> to_s} MB"
+    "#{format_mb bytes} MB"
   end
 
   def format(current_bytes, total_bytes) do
