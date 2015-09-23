@@ -34,6 +34,15 @@ defmodule DeterminateTest do
     assert_bar ProgressBar.render(2, 3, format) == "(XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX.................................)"
   end
 
+  test "custom format supports chardata lists" do
+    format = [
+      left: [IO.ANSI.magenta, "(", IO.ANSI.reset],
+    ]
+
+    bar = capture_io(fn -> ProgressBar.render(1, 2, format) end)
+    assert bar =~ IO.chardata_to_string([IO.ANSI.magenta, "(", IO.ANSI.reset , "==="])
+  end
+
   test "custom format falls back to defaults" do
     format = [bar: "X", right: "]"]
     assert_bar ProgressBar.render(2, 3, format) == "|XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX                                 ]  67%"

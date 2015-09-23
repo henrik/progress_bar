@@ -68,6 +68,15 @@ Output:
 
 You can provide empty-string values to remove `left` and `right` entirely.
 
+You can also provide a chardata list with [IO.ANSI values](http://elixir-lang.org/docs/v1.0/elixir/IO.ANSI.html):
+
+``` elixir
+format = [
+  left: [IO.ANSI.magenta, "PROGRESS:", IO.ANSI.reset, " |"],
+]
+```
+
+
 #### Customize color
 
 Specify [IO.ANSI values](http://elixir-lang.org/docs/v1.0/elixir/IO.ANSI.html) as `bar_color` or `blank_color`. Use lists for multiple values.
