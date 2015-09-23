@@ -46,14 +46,10 @@ defmodule ProgressBar.Determinate do
 
   defp bytes(false, _, _), do: ""
   defp bytes(true, total, total) do
-    " (#{mb total} MB)"
+    " (" <> ProgressBar.Bytes.format(total) <> ")"
   end
   defp bytes(true, current, total) do
-    " (#{mb current}/#{mb total} MB)"
-  end
-
-  defp mb(bytes) do
-    bytes / 1_048_576 |> Float.round(2)
+    " (" <> ProgressBar.Bytes.format(current, total) <> ")"
   end
 
   defp newline_if_complete(total, total), do: "\n"

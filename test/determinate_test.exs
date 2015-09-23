@@ -54,8 +54,8 @@ defmodule DeterminateTest do
 
   test "bytes: true" do
     mb = 1_048_576
-    assert_bar ProgressBar.render(0, mb, bytes: true)      == "|                                                                                                    |   0% (0.0/1.0 MB)"
-    assert_bar ProgressBar.render((mb/2), mb, bytes: true) == "|==================================================                                                  |  50% (0.5/1.0 MB)"
-    assert_bar ProgressBar.render(mb, mb, bytes: true)     == "|====================================================================================================| 100% (1.0 MB)"
+    assert_bar ProgressBar.render(0, mb, bytes: true)      == "|                                                                                                    |   0% (0.00/1.00 MB)"
+    assert_bar ProgressBar.render((mb/2), mb, bytes: true) == "|==================================================                                                  |  50% (0.50/1.00 MB)"
+    assert_bar ProgressBar.render(mb, mb, bytes: true)     == "|====================================================================================================| 100% (1.00 MB)"
   end
 end
