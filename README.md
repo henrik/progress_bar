@@ -116,7 +116,7 @@ ProgressBar.render(2_034_237, 2_097_152, bytes: true)
 
 Output:
 
-    …=========   |  97% (1.94/2.0 MB)
+    …=========   |  97% (1.94/2.00 MB)
 
 This is great with [progressive downloads](https://gist.github.com/henrik/108e5fc23b66131fc3aa).
 
@@ -140,7 +140,7 @@ It will alternate between four forms by default:
 
 And then show as done:
 
-    |==========================================…
+    |============================================…
 
 The return value of the function is passed through, if you want it:
 
