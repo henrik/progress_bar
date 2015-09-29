@@ -2,10 +2,10 @@ IO.puts ""
 IO.puts "Custom format:"
 
 format = [
-  bar: "X",
-  blank: ".",
-  left: "[",
-  right: "]",
+  bar: "=~",
+  blank: ". ",
+  left: [IO.ANSI.green, "[", IO.ANSI.reset],
+  right: [IO.ANSI.red, "]", IO.ANSI.reset],
 ]
 
 Enum.each 1..100, fn (i) ->

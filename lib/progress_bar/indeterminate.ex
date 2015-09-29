@@ -7,6 +7,7 @@ defmodule ProgressBar.Indeterminate do
     bars_color: [],
     done_color: [],
     interval: 500,
+    width: :auto,
   ]
 
   def render(custom_format \\ @default_format, fun) do

@@ -1,8 +1,6 @@
 defmodule ProgressBar.IndeterminateServer do
   use GenServer
 
-  @width 100
-
   # Client API
 
   def start(format) do
@@ -43,28 +41,20 @@ defmodule ProgressBar.IndeterminateServer do
   defp render_bar(format, count) do
     parts = format[:bars]
     index = rem(count, length(parts))
-
     part = Enum.at(parts, index)
 
-    bar = part |> repeat |> color(format[:bars_color])
-    ProgressBar.Formatter.write(format, bar)
+    ProgressBar.Formatter.write(
+      format,
+      {part, format[:bars_color]},
+      ""
+    )
   end
 
   defp render_done(format) do
-    bar = format[:done] |> repeat |> color(format[:done_color])
-    ProgressBar.Formatter.write(format, bar, "\n")
-  end
-
-  defp repeat(bar) do
-    bar
-    |> String.graphemes
-    |> Stream.cycle
-    |> Enum.take(@width)
-    |> Enum.join
-  end
-
-  defp color(content, []), do: content
-  defp color(content, ansi_codes) do
-    [ ansi_codes, content, IO.ANSI.reset ]
+    ProgressBar.Formatter.write(
+      format,
+      {format[:done], format[:done_color]},
+      "\n"
+    )
   end
 end

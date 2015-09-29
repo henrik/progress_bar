@@ -8,6 +8,7 @@ defmodule ProgressBar.Determinate do
     bytes: false,
     bar_color: [],
     blank_color: [],
+    width: :auto,
   ]
 
   def render(current, total, custom_format \\ @default_format) do
@@ -15,29 +16,21 @@ defmodule ProgressBar.Determinate do
 
     percent = current / total * 100 |> Float.round |> trunc
 
-    bar = String.duplicate(format[:bar], percent)
-    blank = String.duplicate(format[:blank], 100 - percent)
-
-    write_bar = [
-      color(bar, format[:bar_color]),
-      color(blank, format[:blank_color]),
-    ]
-
     write_suffix = [
       formatted_percent(format[:percent], percent),
       bytes(format[:bytes], current, total),
       newline_if_complete(current, total),
     ]
 
-    ProgressBar.Formatter.write(format, write_bar, write_suffix)
+    ProgressBar.Formatter.write(
+      format,
+      {format[:bar], format[:bar_color], percent},
+      {format[:blank], format[:blank_color]},
+      write_suffix
+    )
   end
 
   # Private
-
-  defp color(content, []), do: content
-  defp color(content, ansi_codes) do
-    [ ansi_codes, content, IO.ANSI.reset ]
-  end
 
   defp formatted_percent(false, _), do: ""
   defp formatted_percent(true, number) do

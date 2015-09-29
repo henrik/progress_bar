@@ -1,7 +1,10 @@
 defmodule DeterminateTest do
   use ExUnit.Case
+
   import ExUnit.CaptureIO
   import ProgressBarAssertions
+
+  alias ProgressBar.Utils
 
   test "renders a bar" do
     assert_bar ProgressBar.render(0, 3) == "|                                                                                                    |   0%"
@@ -13,6 +16,21 @@ defmodule DeterminateTest do
   test "includes ANSI sequences to clear and re-write the line" do
     bar = capture_io(fn -> ProgressBar.render(1, 1) end)
     assert String.starts_with?(bar, "\e[2K\r")
+  end
+
+  test "scales to fit terminal width (accounting for ANSI)" do
+    format = [
+      left: [IO.ANSI.red, "|", IO.ANSI.reset],
+      width: 20,
+    ]
+
+    actual = capture_io(fn -> ProgressBar.render(2, 3, format) end)
+    actual_visible = Utils.strip_invisibles(actual)
+
+    expected_visible = "|=========    |  67%"
+
+    assert String.length(expected_visible) == 20
+    assert actual_visible == expected_visible
   end
 
   test "adds a newline when complete" do

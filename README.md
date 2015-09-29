@@ -24,8 +24,6 @@ Output:
 
     |==================================                |  67%
 
-(Shortened to fit GitHub's layout. The bar will really be 100 characters wide.)
-
 Call the function again and it will overwrite the previous bar with the new value:
 
 ``` elixir
@@ -50,9 +48,21 @@ Enum.each 1..100, fn (i) ->
 end
 ```
 
+#### Width
+
+If it fits in the terminal, the bar proper will be 100 characters wide, so each percentage point is one character.
+
+If the terminal is narrower, the bar will automatically scale to fit (may not work on all systems).
+
+Or you can specify an explicit width (for the full line, not the bar proper):
+
+``` elixir
+ProgressBar.render(97, 100, width: 30)
+```
+
 #### Customize format
 
-Replace the `bar`, `blank`, `left` or `right` characters.
+Replace the `bar`, `blank`, `left` or `right` values.
 
 ``` elixir
 format = [
@@ -69,16 +79,17 @@ Output:
 
     …XXXXXXXXX...)  97%
 
+`bar` and `blank` don't have to be single characters. They can be any-length strings and will repeat and truncate as appropriate.
+
 You can provide empty-string values to remove `left` and `right` entirely.
 
-You can also provide a chardata list with [IO.ANSI values](http://elixir-lang.org/docs/v1.0/elixir/IO.ANSI.html):
+You can also provide `left` or `right` as chardata lists with [IO.ANSI values](http://elixir-lang.org/docs/v1.0/elixir/IO.ANSI.html):
 
 ``` elixir
 format = [
   left: [IO.ANSI.magenta, "PROGRESS:", IO.ANSI.reset, " |"],
 ]
 ```
-
 
 #### Customize color
 
@@ -170,7 +181,7 @@ ProgressBar.render_indeterminate [
 
 The `bars` list can be any length. Each string in that list is a "frame" in the animation. The bar will alternate between these strings, and then start over.
 
-Each string in the list can be any length and will repeat into a 100 character bar.
+Each string in the list can be any length and will repeat to fit the bar.
 
 
 #### Customize color

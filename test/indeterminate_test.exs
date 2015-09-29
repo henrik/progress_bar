@@ -1,6 +1,8 @@
 defmodule IndeterminateTest do
   use ExUnit.Case
   import ExUnit.CaptureIO
+  alias ProgressBar.Utils
+
 
   @ansi_prefix "\e[2K\r"
 
@@ -11,8 +13,7 @@ defmodule IndeterminateTest do
       end
     end
 
-    bars = io |> String.replace(@ansi_prefix, "\n") |> String.split
-    [first_bar, second_bar, last_bar] = bars
+    [first_bar, second_bar, last_bar] = split_bars(io)
 
     assert first_bar  == "|=---=---=---=---=---=---=---=---=---=---=---=---=---=---=---=---=---=---=---=---=---=---=---=---=---|"
     assert second_bar  == "|-=---=---=---=---=---=---=---=---=---=---=---=---=---=---=---=---=---=---=---=---=---=---=---=---=--|"
@@ -25,6 +26,24 @@ defmodule IndeterminateTest do
     end
 
     assert String.starts_with?(bars, @ansi_prefix)
+  end
+
+  test "scales to fit terminal width (accounting for ANSI)" do
+    format = [
+      left: [IO.ANSI.red, "|", IO.ANSI.reset],
+      width: 20,
+    ]
+
+    actual =
+      capture_io(fn -> ProgressBar.render_indeterminate(format, fn -> end) end)
+      |> first_bar
+
+    actual_visible = Utils.strip_invisibles(actual)
+
+    expected_visible = "|=---=---=---=---=-|"
+
+    assert String.length(expected_visible) == 20
+    assert actual_visible == expected_visible
   end
 
   test "custom format" do
@@ -67,5 +86,13 @@ defmodule IndeterminateTest do
     end
 
     assert_received :fun_return
+  end
+
+  defp first_bar(string) do
+    string |> split_bars |> hd
+  end
+
+  defp split_bars(string) do
+    string |> String.replace(@ansi_prefix, "\n") |> String.split
   end
 end
