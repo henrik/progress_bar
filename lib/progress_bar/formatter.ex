@@ -11,7 +11,6 @@ defmodule ProgressBar.Formatter do
   # Bar + blank.
   def write(format, {bar, bar_color, bar_percent}, {blank, blank_color}, suffix) do
     full_bar_width = full_bar_width(format, suffix)
-
     bar_width = bar_percent / 100 * full_bar_width |> Float.round |> trunc
     blank_width = full_bar_width - bar_width
 
