@@ -17,12 +17,12 @@ defmodule ProgressBar.Formatter do
     bar_width = bar_percent / 100 * full_bar_width |> Float.round |> trunc
     blank_width = full_bar_width - bar_width
 
-    write_bar = [
+    full_bar = [
       (bar |> repeat(bar_width) |> color(bar_color)),
       (blank |> repeat(blank_width) |> color(blank_color)),
     ]
 
-    IO.write chardata(format, write_bar, suffix)
+    IO.write chardata(format, full_bar, suffix)
   end
 
   defp chardata(format, bar, suffix) do
