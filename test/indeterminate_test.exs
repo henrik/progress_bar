@@ -54,6 +54,7 @@ defmodule IndeterminateTest do
       left: "(",
       right: ")",
       done: "X",
+      width: @width,
     ]
 
     bars = capture_io fn ->
