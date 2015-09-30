@@ -20,7 +20,7 @@ defmodule ProgressBar.Mixfile do
 
   def package do
     [
-      contributors: ["Henrik Nyh"],
+      maintainers: ["Henrik Nyh"],
       licenses: ["MIT"],
       links: %{"GitHub" => "https://github.com/henrik/progress_bar"}
     ]
