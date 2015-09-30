@@ -22,30 +22,22 @@ defmodule ProgressBar.Formatter do
       (blank |> repeat(blank_width) |> color(blank_color)),
     ]
 
-    IO.write [
-      left(format),
-      write_bar,
-      right(format, suffix),
-    ]
+    IO.write chardata(format, write_bar, suffix)
   end
 
-  defp left(format) do
-    IO.chardata_to_string [
+  defp chardata(format, bar, suffix) do
+    [
       @ansi_clear_line, # So a shorter line can replace a previous, longer line.
       "\r", # Back to beginning of line.
       format[:left],
-    ]
-  end
-
-  defp right(format, suffix) do
-    IO.chardata_to_string [
+      bar,
       format[:right],
       suffix,
     ]
   end
 
   defp full_bar_width(format, suffix) do
-    other_text = left(format) <> right(format, suffix)
+    other_text = chardata(format, "", suffix) |> IO.chardata_to_string
     ProgressBar.FullBarWidth.determine(format[:width], other_text)
   end
 
