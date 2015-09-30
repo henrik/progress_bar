@@ -50,15 +50,15 @@ end
 
 #### Width
 
-If it fits in the terminal, the bar proper will be 100 characters wide, so each percentage point is one character.
+The bar will automatically set its width to fit the terminal. If the terminal width can't be determined automatically, an 80 column width will be assumed.
 
-If the terminal is narrower, the bar will automatically scale to fit (may not work on all systems).
-
-Or you can specify an explicit width (for the full line, not the bar proper):
+If you really want to, you may specify an explicit terminal column width to fit inside:
 
 ``` elixir
 ProgressBar.render(97, 100, width: 30)
 ```
+
+Even with a wide terminal, note that the bar proper maxes out at 100 characters wide (one per percentage point) and will not go wider.
 
 #### Customize format
 
