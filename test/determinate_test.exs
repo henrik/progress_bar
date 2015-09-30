@@ -6,11 +6,16 @@ defmodule DeterminateTest do
 
   alias ProgressBar.Utils
 
+  # Assume a wide-enough terminal to fit a 100 column bar.
+  # This needs to be explicit or tests fail when run in a narrow terminal.
+  @width 200
+  @format [width: @width]
+
   test "renders a bar" do
-    assert_bar ProgressBar.render(0, 3) == "|                                                                                                    |   0%"
-    assert_bar ProgressBar.render(1, 3) == "|=================================                                                                   |  33%"
-    assert_bar ProgressBar.render(2, 3) == "|===================================================================                                 |  67%"
-    assert_bar ProgressBar.render(3, 3) == "|====================================================================================================| 100%"
+    assert_bar ProgressBar.render(0, 3, @format) == "|                                                                                                    |   0%"
+    assert_bar ProgressBar.render(1, 3, @format) == "|=================================                                                                   |  33%"
+    assert_bar ProgressBar.render(2, 3, @format) == "|===================================================================                                 |  67%"
+    assert_bar ProgressBar.render(3, 3, @format) == "|====================================================================================================| 100%"
   end
 
   test "includes ANSI sequences to clear and re-write the line" do
@@ -48,6 +53,7 @@ defmodule DeterminateTest do
       left: "(",
       right: ")",
       percent: false,
+      width: @width,
     ]
     assert_bar ProgressBar.render(2, 3, format) == "(XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX.................................)"
   end
@@ -62,7 +68,7 @@ defmodule DeterminateTest do
   end
 
   test "custom format falls back to defaults" do
-    format = [bar: "X", right: "]"]
+    format = [bar: "X", right: "]", width: @width]
     assert_bar ProgressBar.render(2, 3, format) == "|XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX                                 ]  67%"
   end
 
@@ -81,8 +87,9 @@ defmodule DeterminateTest do
 
   test "bytes: true" do
     mb = 1_048_576
-    assert_bar ProgressBar.render(0, mb, bytes: true)      == "|                                                                                                    |   0% (0.00/1.00 MB)"
-    assert_bar ProgressBar.render((mb/2), mb, bytes: true) == "|==================================================                                                  |  50% (0.50/1.00 MB)"
-    assert_bar ProgressBar.render(mb, mb, bytes: true)     == "|====================================================================================================| 100% (1.00 MB)"
+    format = [bytes: true, width: @width]
+    assert_bar ProgressBar.render(0, mb, format)      == "|                                                                                                    |   0% (0.00/1.00 MB)"
+    assert_bar ProgressBar.render((mb/2), mb, format) == "|==================================================                                                  |  50% (0.50/1.00 MB)"
+    assert_bar ProgressBar.render(mb, mb, format)     == "|====================================================================================================| 100% (1.00 MB)"
   end
 end

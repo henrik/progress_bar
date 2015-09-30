@@ -3,12 +3,15 @@ defmodule IndeterminateTest do
   import ExUnit.CaptureIO
   alias ProgressBar.Utils
 
+  # Assume a wide-enough terminal to fit a 100 column bar.
+  # This needs to be explicit or tests fail when run in a narrow terminal.
+  @width 200
 
   @ansi_prefix "\e[2K\r"
 
   test "renders an animated bar" do
     io = capture_io fn ->
-      ProgressBar.render_indeterminate [interval: 10], fn ->
+      ProgressBar.render_indeterminate [interval: 10, width: @width], fn ->
         :timer.sleep(10)
       end
     end
@@ -66,9 +69,10 @@ defmodule IndeterminateTest do
     assert bars =~ "XX)"
   end
 
-  test "handles custom bars that don't go evenly into the 100 bar width" do
+  test "handles custom bars that don't go evenly into the bar width" do
     format = [
       bars: ["123"],
+      width: @width,
     ]
 
     bars = capture_io fn ->
