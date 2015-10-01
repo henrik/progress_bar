@@ -16,7 +16,7 @@ defmodule ProgressBar.Determinate do
 
     percent = current / total * 100 |> round
 
-    write_suffix = [
+    suffix = [
       formatted_percent(format[:percent], percent),
       bytes(format[:bytes], current, total),
       newline_if_complete(current, total),
@@ -26,7 +26,7 @@ defmodule ProgressBar.Determinate do
       format,
       {format[:bar], format[:bar_color], percent},
       {format[:blank], format[:blank_color]},
-      write_suffix
+      suffix
     )
   end
 
