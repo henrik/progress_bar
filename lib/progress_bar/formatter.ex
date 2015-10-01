@@ -10,9 +10,7 @@ defmodule ProgressBar.Formatter do
 
   # Bar + blank.
   def write(format, {bar, bar_color, bar_percent}, {blank, blank_color}, suffix) do
-    full_bar_width = full_bar_width(format, suffix)
-    bar_width = bar_percent / 100 * full_bar_width |> Float.round |> trunc
-    blank_width = full_bar_width - bar_width
+    {bar_width, blank_width} = bar_and_blank_widths(format, suffix, bar_percent)
 
     full_bar = [
       (bar |> repeat(bar_width) |> color(bar_color)),
@@ -20,6 +18,14 @@ defmodule ProgressBar.Formatter do
     ]
 
     IO.write chardata(format, full_bar, suffix)
+  end
+
+  defp bar_and_blank_widths(format, suffix, bar_percent) do
+    full_bar_width = full_bar_width(format, suffix)
+    bar_width = bar_percent / 100 * full_bar_width |> round
+    blank_width = full_bar_width - bar_width
+
+    {bar_width, blank_width}
   end
 
   defp chardata(format, bar, suffix) do

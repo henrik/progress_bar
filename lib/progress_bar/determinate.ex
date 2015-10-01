@@ -14,7 +14,7 @@ defmodule ProgressBar.Determinate do
   def render(current, total, custom_format \\ @default_format) do
     format = Keyword.merge(@default_format, custom_format)
 
-    percent = current / total * 100 |> Float.round |> trunc
+    percent = current / total * 100 |> round
 
     write_suffix = [
       formatted_percent(format[:percent], percent),
