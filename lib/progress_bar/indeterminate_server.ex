@@ -32,8 +32,7 @@ defmodule ProgressBar.IndeterminateServer do
     render_bar(format, count)
 
     # This timer is automatically cancelled when the server goes away.
-    interval = format[:interval]
-    Process.send_after(self, :tick, interval)
+    Process.send_after(self, :tick, format[:interval])
 
     {format, count + 1}
   end
