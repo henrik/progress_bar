@@ -13,9 +13,35 @@ defmodule ProgressBar.Indeterminate do
   def render(custom_format \\ @default_format, fun) do
     format = Keyword.merge(@default_format, custom_format)
 
-    ProgressBar.IndeterminateServer.start(format)
+    config = [
+      interval: format[:interval],
+      render_frame: fn (count) -> render_bar(format, count) end,
+      render_done:  fn -> render_done(format) end,
+    ]
+
+    ProgressBar.AnimationServer.start(config)
     value = fun.()
-    ProgressBar.IndeterminateServer.stop
+    ProgressBar.AnimationServer.stop
     value
+  end
+
+  defp render_bar(format, count) do
+    parts = format[:bars]
+    index = rem(count, length(parts))
+    part = Enum.at(parts, index)
+
+    ProgressBar.Formatter.write(
+      format,
+      {part, format[:bars_color]},
+      ""
+    )
+  end
+
+  defp render_done(format) do
+    ProgressBar.Formatter.write(
+      format,
+      {format[:done], format[:done_color]},
+      "\n"
+    )
   end
 end
