@@ -2,7 +2,7 @@ IO.puts ""
 IO.puts "Spinner"
 
 format = [
-  frames: ~w[⠋ ⠙ ⠹ ⠸ ⠼ ⠴ ⠦ ⠧ ⠇ ⠏],  # Stolen from WebTranslateIt
+  frames: :braille,
   interval: 100,
   spinner_color: IO.ANSI.magenta,
   text: "Spinning just for you…",

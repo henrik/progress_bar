@@ -30,8 +30,29 @@ defmodule SpinnerTest do
   test "custom format" do
     format = [
       frames: ["~", "-"],
-      text: "Fooing",
-      done: "Fooed",
+      interval: 1,
+      text: "Doing",
+      done: "Done",
+    ]
+
+    io = capture_io fn ->
+      ProgressBar.render_spinner format, fn ->
+        :timer.sleep(2)
+      end
+    end
+
+    assert split_frames(io) == [
+      "~ Doing",
+      "- Doing",
+      "Done",
+    ]
+  end
+
+  test "named themes" do
+    format = [
+      frames: :braille,
+      text: "Doing",
+      done: "Done",
     ]
 
     io = capture_io fn ->
@@ -39,8 +60,8 @@ defmodule SpinnerTest do
     end
 
     assert split_frames(io) == [
-      "~ Fooing",
-      "Fooed",
+      "⠋ Doing",
+      "Done",
     ]
   end
 

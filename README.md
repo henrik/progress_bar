@@ -232,7 +232,7 @@ You can customize some things:
 
 ``` elixir
 format = [
-  frames: ["/" , "-", "\\", "|"],
+  frames: ["/" , "-", "\\", "|"],  # Or a symbol, see below
   text: "Loading…",
   done: "Loaded.",
   spinner_color: IO.ANSI.magenta,
@@ -262,6 +262,22 @@ end
 IO.puts "Finally got the data: #{inspect data}"
 ```
 
+#### Predefined spinners
+
+Instead of specifying the frames as a list, you can assign one of the predefined styles:
+
+``` elixir
+format = [
+  frames: :braille,
+]
+
+ProgressBar.render_spinner(format, fn -> end)
+```
+
+Name             | Frames
+---------------- | -------------------
+stroke (default) | / - \ |
+braille          | ⠋ ⠙ ⠹ ⠸ ⠼ ⠴ ⠦ ⠧ ⠇ ⠏
 
 ## Examples
 

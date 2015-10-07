@@ -2,11 +2,16 @@ defmodule ProgressBar.Spinner do
   alias ProgressBar.Utils
 
   @default_format [
-    frames: ["/", "-", "\\", "|"],
+    frames: :stroke,
     spinner_color: [],
     text: "Loading…",
     done: "Loaded.",
     interval: 500,
+  ]
+
+  @themes [
+    stroke:  ~w[/ - \\ |],
+    braille: ~w[⠋ ⠙ ⠹ ⠸ ⠼ ⠴ ⠦ ⠧ ⠇ ⠏],  # Stolen from WebTranslateIt
   ]
 
   def render(custom_format \\ @default_format, fun) do
@@ -25,7 +30,7 @@ defmodule ProgressBar.Spinner do
   end
 
   defp render_frame(format, count) do
-    frames = format[:frames]
+    frames = get_frames(format[:frames])
     index = rem(count, length(frames))
     frame = Enum.at(frames, index)
 
@@ -44,6 +49,9 @@ defmodule ProgressBar.Spinner do
       "\n",
     ]
   end
+
+  defp get_frames(theme) when is_atom(theme), do: Dict.fetch!(@themes, theme)
+  defp get_frames(list) when is_list(list), do: list
 
   defp color(content, []), do: content
   defp color(content, ansi_codes) do
