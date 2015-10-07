@@ -4,7 +4,7 @@ defmodule ProgressBar.Mixfile do
   def project do
     [
       app: :progress_bar,
-      version: "0.0.13",
+      version: "1.0.0",
       elixir: "~> 1.0",
       description: "Text progress bars.",
       package: package,
