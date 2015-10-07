@@ -2,7 +2,7 @@ defmodule ProgressBar.Spinner do
   alias ProgressBar.Utils
 
   @default_format [
-    frames: :stroke,
+    frames: :strokes,
     spinner_color: [],
     text: "Loading…",
     done: "Loaded.",
@@ -10,8 +10,9 @@ defmodule ProgressBar.Spinner do
   ]
 
   @themes [
-    stroke:  ~w[/ - \\ |],
+    strokes:  ~w[/ - \\ |],
     braille: ~w[⠋ ⠙ ⠹ ⠸ ⠼ ⠴ ⠦ ⠧ ⠇ ⠏],  # Stolen from WebTranslateIt
+    bars: ~w[▁ ▂ ▃ ▄ ▅ ▆ ▇ █ ▇ ▆ ▅ ▄ ▃],  # http://stackoverflow.com/a/2685827/6962
   ]
 
   def render(custom_format \\ @default_format, fun) do
