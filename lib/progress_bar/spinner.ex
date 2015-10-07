@@ -6,7 +6,7 @@ defmodule ProgressBar.Spinner do
     spinner_color: [],
     text: "Loading…",
     done: "Loaded.",
-    interval: 500,
+    interval: 100,
   ]
 
   @themes [

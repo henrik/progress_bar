@@ -3,7 +3,6 @@ IO.puts "Spinner:"
 
 format = [
   frames: :strokes,
-  interval: 100,
   spinner_color: IO.ANSI.magenta,
   text: "Spinning just for you…",
   done: [IO.ANSI.green, "✓", IO.ANSI.reset, " Done spinning."],

@@ -236,7 +236,7 @@ format = [
   text: "Loading…",
   done: "Loaded.",
   spinner_color: IO.ANSI.magenta,
-  interval: 500,  # milliseconds between frames
+  interval: 100,  # milliseconds between frames
 ]
 
 ProgressBar.render_spinner format, my_function

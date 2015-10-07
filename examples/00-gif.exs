@@ -52,7 +52,6 @@ ProgressBar.render_indeterminate(format, fn -> :timer.sleep 3000 end)
 
 format = [
   frames: :braille,
-  interval: 100,
   spinner_color: IO.ANSI.magenta,
   text: "Loading…",
   done: [IO.ANSI.green, "✓", IO.ANSI.reset, " Loaded."],
