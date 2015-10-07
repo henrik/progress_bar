@@ -7,8 +7,6 @@ defmodule IndeterminateTest do
   # This needs to be explicit or tests fail when run in a narrow terminal.
   @width 200
 
-  @ansi_prefix "\e[2K\r"
-
   test "renders an animated bar" do
     io = capture_io fn ->
       ProgressBar.render_indeterminate [interval: 10, width: @width], fn ->
@@ -28,7 +26,7 @@ defmodule IndeterminateTest do
       ProgressBar.render_indeterminate fn -> end
     end
 
-    assert String.starts_with?(bars, @ansi_prefix)
+    assert String.starts_with?(bars, Utils.ansi_prefix)
   end
 
   test "scales to fit terminal width (accounting for ANSI)" do
@@ -98,6 +96,6 @@ defmodule IndeterminateTest do
   end
 
   defp split_bars(string) do
-    string |> String.replace(@ansi_prefix, "\n") |> String.split
+    string |> String.replace(Utils.ansi_prefix, "\n") |> String.split
   end
 end

@@ -10,13 +10,13 @@ defmodule SpinnerTest do
       end
     end
 
-    [frame_1, frame_2, frame_3, frame_4, frame_5] = split_frames(io)
-
-    assert frame_1  == "/ Loading…"
-    assert frame_2  == "- Loading…"
-    assert frame_3  == "\\ Loading…"
-    assert frame_4  == "| Loading…"
-    assert frame_5  == "Loaded."
+    assert split_frames(io) == [
+      "/ Loading…",
+      "- Loading…",
+      "\\ Loading…",
+      "| Loading…",
+      "Loaded.",
+    ]
   end
 
   test "includes ANSI sequences to clear and re-write the line" do
@@ -29,7 +29,7 @@ defmodule SpinnerTest do
 
   test "custom format" do
     format = [
-      frames: ["A", "B"],
+      frames: ["~", "-"],
       text: "Fooing",
       done: "Fooed",
     ]
@@ -38,10 +38,10 @@ defmodule SpinnerTest do
       ProgressBar.render_spinner(format, fn -> end)
     end
 
-    [frame_1, frame_2] = split_frames(io)
-
-    assert frame_1 == "A Fooing"
-    assert frame_2 == "Fooed"
+    assert split_frames(io) == [
+      "~ Fooing",
+      "Fooed",
+    ]
   end
 
   test "passes through the function's return value" do
