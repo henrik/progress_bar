@@ -15,7 +15,7 @@ defmodule ProgressBar.Indeterminate do
 
     config = [
       interval: format[:interval],
-      render_frame: fn (count) -> render_bar(format, count) end,
+      render_frame: fn (count) -> render_frame(format, count) end,
       render_done:  fn -> render_done(format) end,
     ]
 
@@ -25,12 +25,12 @@ defmodule ProgressBar.Indeterminate do
     value
   end
 
-  defp render_bar(format, count) do
+  defp render_frame(format, count) do
     parts = format[:bars]
     index = rem(count, length(parts))
     part = Enum.at(parts, index)
 
-    ProgressBar.Formatter.write(
+    ProgressBar.BarFormatter.write(
       format,
       {part, format[:bars_color]},
       ""
@@ -38,7 +38,7 @@ defmodule ProgressBar.Indeterminate do
   end
 
   defp render_done(format) do
-    ProgressBar.Formatter.write(
+    ProgressBar.BarFormatter.write(
       format,
       {format[:done], format[:done_color]},
       "\n"

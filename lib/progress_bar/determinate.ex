@@ -22,7 +22,7 @@ defmodule ProgressBar.Determinate do
       newline_if_complete(current, total),
     ]
 
-    ProgressBar.Formatter.write(
+    ProgressBar.BarFormatter.write(
       format,
       {format[:bar], format[:bar_color], percent},
       {format[:blank], format[:blank_color]},

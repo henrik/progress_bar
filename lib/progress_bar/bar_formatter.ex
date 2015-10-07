@@ -1,7 +1,5 @@
-defmodule ProgressBar.Formatter do
-  # This may become ANSI.IO.clear_line sometime after Elixir 1.1.0:
-  # https://github.com/elixir-lang/elixir/pull/3755
-  @ansi_clear_line "\e[2K"
+defmodule ProgressBar.BarFormatter do
+  alias ProgressBar.Utils
 
   # Full-width bar, with no blank (i.e. indeterminate).
   def write(format, {bar, bar_color}, suffix) do
@@ -30,8 +28,7 @@ defmodule ProgressBar.Formatter do
 
   defp chardata(format, bar, suffix) do
     [
-      @ansi_clear_line, # So a shorter line can replace a previous, longer line.
-      "\r", # Back to beginning of line.
+      Utils.ansi_prefix,
       format[:left],
       bar,
       format[:right],

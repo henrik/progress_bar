@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.org/henrik/progress_bar.svg?branch=master)](https://travis-ci.org/henrik/progress_bar)
 ![Hex](https://img.shields.io/hexpm/v/progress_bar.svg)
 
-![Screenshot](https://s3.amazonaws.com/f.cl.ly/items/2v0m3J3u1j2W43462e2F/progress_bar.gif)
+![Screenshot](https://s3.amazonaws.com/f.cl.ly/items/2N3n440S0d2S2n371j0G/progress_bar.gif)
 
 
 ## Usage
@@ -203,6 +203,63 @@ You can customize the millisecond interval at which it alternates. The default i
 
 ``` elixir
 ProgressBar.render_indeterminate([interval: 10], fn -> end)
+```
+
+
+### Spinners
+
+A spinner is similar to an indeterminate progress bar. But instead of a bar, it shows a "spinning" animation next to some text.
+
+``` elixir
+ProgressBar.render_spinner [text: "Loading…", done: "Loaded."], fn ->
+  # Do something for an indeterminate amount of time…
+  :timer.sleep 2000
+end
+```
+
+This is the default animation and text:
+
+    / Loading…
+    - Loading…
+    \ Loading…
+    | Loading…
+
+Then it shows as done:
+
+    Loaded.
+
+You can customize some things:
+
+``` elixir
+format = [
+  frames: ["/" , "-", "\\", "|"],
+  text: "Loading…",
+  done: "Loaded.",
+  spinner_color: IO.ANSI.magenta,
+  interval: 500,  # milliseconds between frames
+]
+
+ProgressBar.render_spinner format, my_function
+```
+
+Colors can be lists just like with other progress bars.
+
+If you want the done state to also be some colored symbol, just use chardata lists:
+
+``` elixir
+format = [
+  done: [IO.ANSI.green, "✓", IO.ANSI.reset, " Loaded."],
+]
+```
+
+As with indeterminate progress bars, the return value of the function is passed through if you want it:
+
+``` elixir
+data = ProgressBar.render_spinner fn ->
+  ApiClient.painstakingly_retrieve_data
+end
+
+IO.puts "Finally got the data: #{inspect data}"
 ```
 
 

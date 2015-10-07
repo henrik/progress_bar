@@ -48,4 +48,18 @@ format = [
 
 ProgressBar.render_indeterminate(format, fn -> :timer.sleep 3000 end)
 
+# Spinner
+
+format = [
+  frames: ~w[⠋ ⠙ ⠹ ⠸ ⠼ ⠴ ⠦ ⠧ ⠇ ⠏],
+  interval: 100,
+  spinner_color: IO.ANSI.magenta,
+  text: "Loading…",
+  done: [IO.ANSI.green, "✓", IO.ANSI.reset, " Loaded."],
+]
+
+ProgressBar.render_spinner(format, fn -> :timer.sleep 3000 end)
+
+# No noisy text at bottom of GIF.
+
 IO.puts "\n\n"
