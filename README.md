@@ -8,7 +8,7 @@
 
 ## Usage
 
-You can render regular ("determinate") progress bars, or "indeterminate" ones that animate but don't indicate the current progress.
+You can render regular ("determinate") progress bars, "indeterminate" bars that animate but don't indicate the current progress, and indeterminate spinners.
 
 Do you have a use case not listed below? Please open an issue or pull request!
 
