@@ -10,9 +10,9 @@ defmodule ProgressBar.Spinner do
   ]
 
   @themes [
-    strokes:  ~w[/ - \\ |],
+    strokes: ~w[/ - \\ |],
     braille: ~w[⠋ ⠙ ⠹ ⠸ ⠼ ⠴ ⠦ ⠧ ⠇ ⠏],  # Stolen from WebTranslateIt
-    bars: ~w[▁ ▂ ▃ ▄ ▅ ▆ ▇ █ ▇ ▆ ▅ ▄ ▃],  # http://stackoverflow.com/a/2685827/6962
+    bars:    ~w[▁ ▂ ▃ ▄ ▅ ▆ ▇ █ ▇ ▆ ▅ ▄ ▃],  # http://stackoverflow.com/a/2685827/6962
   ]
 
   def render(custom_format \\ @default_format, fun) do
