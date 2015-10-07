@@ -267,11 +267,7 @@ IO.puts "Finally got the data: #{inspect data}"
 Instead of specifying the frames as a list, you can assign one of the predefined styles:
 
 ``` elixir
-format = [
-  frames: :braille,
-]
-
-ProgressBar.render_spinner(format, fn -> end)
+ProgressBar.render_spinner([frames: :braille], fn -> end)
 ```
 
 Name             | Frames
