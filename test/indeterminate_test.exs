@@ -9,24 +9,26 @@ defmodule IndeterminateTest do
 
   test "renders an animated bar" do
     io = capture_io fn ->
-      ProgressBar.render_indeterminate [interval: 10, width: @width], fn ->
-        :timer.sleep(10)
+      ProgressBar.render_indeterminate [interval: 1, width: @width], fn ->
+        :timer.sleep(5)
       end
     end
 
-    [first_bar, second_bar, last_bar] = split_bars(io)
-
-    assert first_bar  == "|=---=---=---=---=---=---=---=---=---=---=---=---=---=---=---=---=---=---=---=---=---=---=---=---=---|"
-    assert second_bar  == "|-=---=---=---=---=---=---=---=---=---=---=---=---=---=---=---=---=---=---=---=---=---=---=---=---=--|"
-    assert last_bar   == "|====================================================================================================|"
+    assert split_bars(io) == [
+      "|=---=---=---=---=---=---=---=---=---=---=---=---=---=---=---=---=---=---=---=---=---=---=---=---=---|",
+      "|-=---=---=---=---=---=---=---=---=---=---=---=---=---=---=---=---=---=---=---=---=---=---=---=---=--|",
+      "|--=---=---=---=---=---=---=---=---=---=---=---=---=---=---=---=---=---=---=---=---=---=---=---=---=-|",
+      "|---=---=---=---=---=---=---=---=---=---=---=---=---=---=---=---=---=---=---=---=---=---=---=---=---=|",
+      "|====================================================================================================|",
+    ]
   end
 
   test "includes ANSI sequences to clear and re-write the line" do
-    bars = capture_io fn ->
+    io = capture_io fn ->
       ProgressBar.render_indeterminate fn -> end
     end
 
-    assert String.starts_with?(bars, Utils.ansi_prefix)
+    assert String.starts_with?(io, Utils.ansi_prefix)
   end
 
   test "scales to fit terminal width (accounting for ANSI)" do
