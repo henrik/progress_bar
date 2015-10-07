@@ -1,5 +1,5 @@
 IO.puts ""
-IO.puts "Spinner"
+IO.puts "Spinner:"
 
 format = [
   frames: :braille,
