@@ -270,11 +270,11 @@ Instead of specifying the frames as a list, you can assign one of the predefined
 ProgressBar.render_spinner([frames: :braille], fn -> end)
 ```
 
-Name             | Frames
----------------- | -------------------------
-stroke (default) | `/ - \ |`
-braille          | `⠋ ⠙ ⠹ ⠸ ⠼ ⠴ ⠦ ⠧ ⠇ ⠏`
-bars             | `▁ ▂ ▃ ▄ ▅ ▆ ▇ █ ▇ ▆ ▅ ▄ ▃`
+Name              | Frames
+----------------- | -------------------------
+strokes (default) | `/ - \ |`
+braille           | `⠋ ⠙ ⠹ ⠸ ⠼ ⠴ ⠦ ⠧ ⠇ ⠏`
+bars              | `▁ ▂ ▃ ▄ ▅ ▆ ▇ █ ▇ ▆ ▅ ▄ ▃`
 
 ## Examples
 
