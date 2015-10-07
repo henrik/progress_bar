@@ -276,9 +276,9 @@ ProgressBar.render_spinner(format, fn -> end)
 
 Name             | Frames
 ---------------- | -------------------------
-stroke (default) | / - \ |
-braille          | ⠋ ⠙ ⠹ ⠸ ⠼ ⠴ ⠦ ⠧ ⠇ ⠏
-bars             | ▁ ▂ ▃ ▄ ▅ ▆ ▇ █ ▇ ▆ ▅ ▄ ▃
+stroke (default) | `/ - \ |`
+braille          | `⠋ ⠙ ⠹ ⠸ ⠼ ⠴ ⠦ ⠧ ⠇ ⠏`
+bars             | `▁ ▂ ▃ ▄ ▅ ▆ ▇ █ ▇ ▆ ▅ ▄ ▃`
 
 ## Examples
 
