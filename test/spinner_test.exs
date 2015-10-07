@@ -5,8 +5,8 @@ defmodule SpinnerTest do
 
   test "renders an animated spinner" do
     io = capture_io fn ->
-      ProgressBar.render_spinner [interval: 10], fn ->
-        :timer.sleep(40)
+      ProgressBar.render_spinner [interval: 1], fn ->
+        :timer.sleep(5)
       end
     end
 
