@@ -12,8 +12,4 @@ defmodule ProgressBar do
   def render_indeterminate(custom_format, fun) do
     ProgressBar.Indeterminate.render(custom_format, fun)
   end
-
-  def terminate do
-    ProgressBar.Indeterminate.terminate
-  end
 end
