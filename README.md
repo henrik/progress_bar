@@ -5,8 +5,6 @@
 
 ![Screenshot](https://s3.amazonaws.com/f.cl.ly/items/2N3n440S0d2S2n371j0G/progress_bar.gif)
 
-## Contents
-
 * [Usage](#usage)
 * [Examples](#examples)
 * [Installation](#installation)
