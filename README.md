@@ -274,17 +274,17 @@ IO.puts "Finally got the data: #{inspect data}"
 
 #### Predefined spinners
 
-Instead of specifying the frames as a list, you can assign one of the predefined styles:
+Instead of specifying the frames as a list, you can assign one of the predefined styles as an atom:
 
 ``` elixir
 ProgressBar.render_spinner([frames: :braille], fn -> end)
 ```
 
-Name              | Frames
------------------ | -------------------------
-strokes (default) | `/ - \ |`
-braille           | `⠋ ⠙ ⠹ ⠸ ⠼ ⠴ ⠦ ⠧ ⠇ ⠏`
-bars              | `▁ ▂ ▃ ▄ ▅ ▆ ▇ █ ▇ ▆ ▅ ▄ ▃`
+Name                 | Frames
+-------------------- | ---------------------------
+`:strokes` (default) | `/ - \ |`
+`:braille`           | `⠋ ⠙ ⠹ ⠸ ⠼ ⠴ ⠦ ⠧ ⠇ ⠏`
+`:bars`              | `▁ ▂ ▃ ▄ ▅ ▆ ▇ █ ▇ ▆ ▅ ▄ ▃`
 
 
 ## Examples
