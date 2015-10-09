@@ -242,7 +242,7 @@ You can customize some things:
 
 ``` elixir
 format = [
-  frames: ["/" , "-", "\\", "|"],  # Or a symbol, see below
+  frames: ["/" , "-", "\\", "|"],  # Or an atom, see below
   text: "Loading…",
   done: "Loaded.",
   spinner_color: IO.ANSI.magenta,
