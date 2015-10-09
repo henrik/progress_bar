@@ -5,6 +5,13 @@
 
 ![Screenshot](https://s3.amazonaws.com/f.cl.ly/items/2N3n440S0d2S2n371j0G/progress_bar.gif)
 
+## Contents
+
+* [Usage](#usage)
+* [Examples](#examples)
+* [Installation](#installation)
+* [Credits and license](#credits-and-license)
+
 
 ## Usage
 
@@ -14,6 +21,7 @@ You can render
   * and [indeterminate spinners](#spinners).
 
 Do you have a use case not listed below? Please open an issue or pull request!
+
 
 ### Determinate progress bars
 
@@ -136,6 +144,7 @@ Output:
     …=========   |  97% (1.94/2.00 MB)
 
 This is great with [progressive downloads](https://gist.github.com/henrik/108e5fc23b66131fc3aa).
+
 
 ### Indeterminate progress bars
 
@@ -279,6 +288,7 @@ strokes (default) | `/ - \ |`
 braille           | `⠋ ⠙ ⠹ ⠸ ⠼ ⠴ ⠦ ⠧ ⠇ ⠏`
 bars              | `▁ ▂ ▃ ▄ ▅ ▆ ▇ █ ▇ ▆ ▅ ▄ ▃`
 
+
 ## Examples
 
 To see these bad boys in action, clone this repo and run the example scripts:
@@ -310,11 +320,6 @@ end
 Then fetch it:
 
     mix deps.get
-
-
-## Tests
-
-    mix test
 
 
 ## Credits and license
