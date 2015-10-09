@@ -14,14 +14,14 @@
 ## Usage
 
 You can render
-  * [regular ("determinate") progress bars](#determinate-progress-bars),
-  * ["indeterminate" bars](#indeterminate-progress-bars) that animate but don't indicate the current progress,
+  * [progress bars](#progress-bars),
+  * [indeterminate bars](#indeterminate-progress-bars) that animate but don't indicate the current progress,
   * and [indeterminate spinners](#spinners).
 
 Do you have a use case not listed below? Please open an issue or pull request!
 
 
-### Determinate progress bars
+### Progress bars
 
 Specify the current value and the total value, and a bar will be rendered to STDOUT.
 
