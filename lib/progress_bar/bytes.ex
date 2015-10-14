@@ -17,6 +17,6 @@ defmodule ProgressBar.Bytes do
 
   defp to_s(number) do
     # Always show 2 decimals. Looks jumpy otherwise when numbers change.
-    :io_lib.format("~.2f", [number]) |> hd
+    Float.to_string(number, decimals: 2)
   end
 end
