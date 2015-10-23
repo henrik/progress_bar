@@ -86,7 +86,7 @@ defmodule DeterminateTest do
   end
 
   test "bytes: true" do
-    mb = 1_048_576
+    mb = 1_000_000
     format = [bytes: true, width: @width]
     assert_bar ProgressBar.render(0, mb, format)      == "|                                                                                                    |   0% (0.00/1.00 MB)"
     assert_bar ProgressBar.render((mb/2), mb, format) == "|==================================================                                                  |  50% (0.50/1.00 MB)"

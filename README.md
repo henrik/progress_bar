@@ -141,6 +141,8 @@ Output:
 
     …=========   |  97% (1.94/2.00 MB)
 
+The unit (KB or MB) is determined automatically.
+
 This is great with [progressive downloads](https://gist.github.com/henrik/108e5fc23b66131fc3aa).
 
 
