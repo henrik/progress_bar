@@ -11,8 +11,8 @@ defmodule ProgressBar.BarFormatter do
     {bar_width, blank_width} = bar_and_blank_widths(format, suffix, bar_percent)
 
     full_bar = [
-      (bar |> repeat(bar_width) |> color(bar_color)),
-      (blank |> repeat(blank_width) |> color(blank_color)),
+      (bar |> repeat(bar_width) |> Utils.color(bar_color)),
+      (blank |> repeat(blank_width) |> Utils.color(blank_color)),
     ]
 
     IO.write chardata(format, full_bar, suffix)
@@ -47,10 +47,5 @@ defmodule ProgressBar.BarFormatter do
     |> Stream.cycle
     |> Enum.take(width)
     |> Enum.join
-  end
-
-  defp color(content, []), do: content
-  defp color(content, ansi_codes) do
-    [ ansi_codes, content, IO.ANSI.reset ]
   end
 end

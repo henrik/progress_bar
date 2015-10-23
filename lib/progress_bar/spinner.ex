@@ -37,7 +37,7 @@ defmodule ProgressBar.Spinner do
 
     IO.write [
       Utils.ansi_prefix,
-      color(frame, format[:spinner_color]),
+      Utils.color(frame, format[:spinner_color]),
       " ",
       format[:text],
     ]
@@ -53,9 +53,4 @@ defmodule ProgressBar.Spinner do
 
   defp get_frames(theme) when is_atom(theme), do: Dict.fetch!(@themes, theme)
   defp get_frames(list) when is_list(list), do: list
-
-  defp color(content, []), do: content
-  defp color(content, ansi_codes) do
-    [ ansi_codes, content, IO.ANSI.reset ]
-  end
 end
