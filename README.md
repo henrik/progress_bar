@@ -1,7 +1,7 @@
 # ProgressBar for Elixir
 
 [![Build Status](https://travis-ci.org/henrik/progress_bar.svg?branch=master)](https://travis-ci.org/henrik/progress_bar)
-![Hex](https://img.shields.io/hexpm/v/progress_bar.svg)
+[![Hex](https://img.shields.io/hexpm/v/progress_bar.svg)](https://hex.pm/packages/progress_bar)
 
 ![Screenshot](https://s3.amazonaws.com/f.cl.ly/items/2N3n440S0d2S2n371j0G/progress_bar.gif)
 
