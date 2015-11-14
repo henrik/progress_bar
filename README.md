@@ -322,6 +322,11 @@ Then fetch it:
     mix deps.get
 
 
+## Also see
+
+* [simple_bar](https://github.com/jeffreybaird/simple_bar)
+
+
 ## Credits and license
 
 By Henrik Nyh 2015-09-19 under the MIT license.
