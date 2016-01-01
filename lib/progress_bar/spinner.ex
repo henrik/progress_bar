@@ -51,6 +51,6 @@ defmodule ProgressBar.Spinner do
     ]
   end
 
-  defp get_frames(theme) when is_atom(theme), do: Dict.fetch!(@themes, theme)
+  defp get_frames(theme) when is_atom(theme), do: Keyword.fetch!(@themes, theme)
   defp get_frames(list) when is_list(list), do: list
 end
