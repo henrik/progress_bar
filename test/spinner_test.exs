@@ -21,7 +21,7 @@ defmodule SpinnerTest do
 
   test "includes ANSI sequences to clear and re-write the line" do
     io = capture_io fn ->
-      ProgressBar.render_spinner fn -> end
+      ProgressBar.render_spinner fn -> :noop end
     end
 
     assert String.starts_with?(io, Utils.ansi_prefix)
@@ -56,7 +56,7 @@ defmodule SpinnerTest do
     ]
 
     io = capture_io fn ->
-      ProgressBar.render_spinner(format, fn -> end)
+      ProgressBar.render_spinner(format, fn -> :noop end)
     end
 
     assert split_frames(io) == [

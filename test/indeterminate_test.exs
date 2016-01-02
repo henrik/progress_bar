@@ -25,7 +25,7 @@ defmodule IndeterminateTest do
 
   test "includes ANSI sequences to clear and re-write the line" do
     io = capture_io fn ->
-      ProgressBar.render_indeterminate fn -> end
+      ProgressBar.render_indeterminate fn -> :noop end
     end
 
     assert String.starts_with?(io, Utils.ansi_prefix)
@@ -38,7 +38,7 @@ defmodule IndeterminateTest do
     ]
 
     actual =
-      capture_io(fn -> ProgressBar.render_indeterminate(format, fn -> end) end)
+      capture_io(fn -> ProgressBar.render_indeterminate(format, fn -> :noop end) end)
       |> first_bar
 
     actual_visible = Utils.strip_invisibles(actual)
@@ -58,7 +58,7 @@ defmodule IndeterminateTest do
     ]
 
     bars = capture_io fn ->
-      ProgressBar.render_indeterminate(format, fn -> end)
+      ProgressBar.render_indeterminate(format, fn -> :noop end)
     end
 
     # Ongoing bar.
@@ -77,7 +77,7 @@ defmodule IndeterminateTest do
     ]
 
     bars = capture_io fn ->
-      ProgressBar.render_indeterminate(format, fn -> end)
+      ProgressBar.render_indeterminate(format, fn -> :noop end)
     end
 
     expected_bar = String.duplicate("123", 33) <> "1"  # "123…1231"
