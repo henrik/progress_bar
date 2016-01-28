@@ -45,8 +45,9 @@ defmodule ProgressBar.Spinner do
 
   defp render_done(format) do
     case format[:done] do
-      :remove -> IO.write [Utils.ansi_prefix]
-      _ ->
+      :remove ->
+        IO.write [Utils.ansi_prefix]
+      _       ->
         IO.write [
           Utils.ansi_prefix,
           format[:done],
