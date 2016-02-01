@@ -74,6 +74,18 @@ defmodule SpinnerTest do
     assert_received :fun_return
   end
 
+  test "[done: :remove] flag" do
+    io = capture_io fn ->
+      ProgressBar.render_spinner([done: :remove], fn -> :noop end)
+      IO.puts "after"
+    end
+
+    assert split_frames(io) == [
+      "/ Loading…",
+      "after",
+    ]
+  end
+
   defp split_frames(string) do
     string
     |> String.strip

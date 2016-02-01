@@ -44,11 +44,16 @@ defmodule ProgressBar.Spinner do
   end
 
   defp render_done(format) do
-    IO.write [
-      Utils.ansi_prefix,
-      format[:done],
-      "\n",
-    ]
+    case format[:done] do
+      :remove ->
+        IO.write [Utils.ansi_prefix]
+      _       ->
+        IO.write [
+          Utils.ansi_prefix,
+          format[:done],
+          "\n",
+        ]
+    end
   end
 
   defp get_frames(theme) when is_atom(theme), do: Keyword.fetch!(@themes, theme)
