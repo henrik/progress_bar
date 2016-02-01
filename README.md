@@ -264,6 +264,8 @@ format = [
 ]
 ```
 
+Or you can pass `done: :remove` to stop showing this line of text entirely when it completes.
+
 As with indeterminate progress bars, the return value of the function is passed through if you want it:
 
 ``` elixir
