@@ -21,7 +21,7 @@ defmodule ProgressBar.Spinner do
     config = [
       interval: format[:interval],
       render_frame: fn (count) -> render_frame(format, count) end,
-      render_done:  fn -> render_done(format) end,
+      render_done:  fn -> render_done(format[:done]) end,
     ]
 
     ProgressBar.AnimationServer.start(config)
@@ -43,17 +43,15 @@ defmodule ProgressBar.Spinner do
     ]
   end
 
-  defp render_done(format) do
-    case format[:done] do
-      :remove ->
-        IO.write [Utils.ansi_prefix]
-      _       ->
-        IO.write [
-          Utils.ansi_prefix,
-          format[:done],
-          "\n",
-        ]
-    end
+  defp render_done(:remove) do
+    IO.write [Utils.ansi_prefix]
+  end
+  defp render_done(text) do
+    IO.write [
+      Utils.ansi_prefix,
+      text,
+      "\n",
+    ]
   end
 
   defp get_frames(theme) when is_atom(theme), do: Keyword.fetch!(@themes, theme)
