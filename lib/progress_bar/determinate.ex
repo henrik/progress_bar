@@ -11,7 +11,9 @@ defmodule ProgressBar.Determinate do
     width: :auto,
   ]
 
-  def render(current, total, custom_format \\ @default_format) do
+  def render(current, total, custom_format \\ @default_format)
+    when current <= total
+  do
     format = Keyword.merge(@default_format, custom_format)
 
     percent = current / total * 100 |> round
