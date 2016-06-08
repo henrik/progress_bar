@@ -18,6 +18,12 @@ defmodule DeterminateTest do
     assert_bar ProgressBar.render(3, 3, @format) == "|====================================================================================================| 100%"
   end
 
+  test "does not render progress above 100%" do
+    assert_raise FunctionClauseError, fn ->
+      ProgressBar.render(4, 3, @format)
+    end
+  end
+
   test "includes ANSI sequences to clear and re-write the line" do
     bar = capture_io(fn -> ProgressBar.render(1, 1) end)
     assert String.starts_with?(bar, "\e[2K\r")
