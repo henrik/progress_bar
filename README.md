@@ -331,4 +331,4 @@ Then fetch it:
 
 ## Credits and license
 
-By Henrik Nyh 2015-09-19 under the MIT license.
+By Henrik Nyh and [contributors](https://github.com/henrik/progress_bar/graphs/contributors) 2015-09-19 under the MIT license.
