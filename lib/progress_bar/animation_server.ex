@@ -10,7 +10,11 @@ defmodule ProgressBar.AnimationServer do
   end
 
   def stop do
-    GenServer.call(@name, :stop)
+    if Process.whereis(@name) do
+      GenServer.call(@name, :stop)
+    else
+      :ok
+    end
   end
 
   # GenServer API
