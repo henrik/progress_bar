@@ -25,6 +25,6 @@ defmodule ProgressBar.Bytes do
 
   defp to_s(number) do
     # Always show 2 decimals. Looks jumpy otherwise when numbers change.
-    number |> Float.floor(2) |> Float.to_string(decimals: 2)
+    number |> Float.floor(2) |> :erlang.float_to_binary(decimals: 2)
   end
 end
