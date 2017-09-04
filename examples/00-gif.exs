@@ -33,7 +33,7 @@ format = [
   blank_color: [IO.ANSI.magenta],
   bar: "█",
   blank: "░",
-  bytes: true,
+  suffix: :bytes,
 ]
 
 Enum.each 0..1_000, fn (i) ->

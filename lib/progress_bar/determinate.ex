@@ -1,4 +1,6 @@
 defmodule ProgressBar.Determinate do
+  alias ProgressBar.Bytes
+
   @default_format [
     bar: "=",
     blank: " ",
@@ -6,21 +8,24 @@ defmodule ProgressBar.Determinate do
     right: "|",
     percent: true,
     bytes: false,
+    suffix: false,
     bar_color: [],
     blank_color: [],
     width: :auto,
   ]
 
   def render(current, total, custom_format \\ @default_format)
-    when current <= total
-  do
-    format = Keyword.merge(@default_format, custom_format)
+  def render(current, total, custom_format) when current <= total do
+    format =
+      @default_format
+      |> Keyword.merge(custom_format)
+      |> Enum.into(%{})
 
     percent = current / total * 100 |> round
 
     suffix = [
       formatted_percent(format[:percent], percent),
-      bytes(format[:bytes], current, total),
+      format |> get_suffix() |> formatted_suffix(current, total),
       newline_if_complete(current, total),
     ]
 
@@ -34,18 +39,24 @@ defmodule ProgressBar.Determinate do
 
   # Private
 
-  defp formatted_percent(false, _), do: ""
+  defp get_suffix(%{suffix: false, bytes: true}), do: :bytes
+  defp get_suffix(%{suffix: suffix}), do: suffix
+
+  defp formatted_percent(false, _) do
+    ""
+  end
   defp formatted_percent(true, number) do
-    " " <> String.pad_leading(Integer.to_string(number), 3) <> "%"
+    number
+    |> Integer.to_string()
+    |> String.pad_leading(4)
+    |> Kernel.<>("%")
   end
 
-  defp bytes(false, _, _), do: ""
-  defp bytes(true, total, total) do
-    " (" <> ProgressBar.Bytes.format(total) <> ")"
-  end
-  defp bytes(true, current, total) do
-    " (" <> ProgressBar.Bytes.format(current, total) <> ")"
-  end
+  defp formatted_suffix(:count, total, total), do: " (#{total})"
+  defp formatted_suffix(:count, current, total), do: " (#{current}/#{total})"
+  defp formatted_suffix(:bytes, total, total), do: " (#{Bytes.format(total)})"
+  defp formatted_suffix(:bytes, current, total), do: " (#{Bytes.format(current, total)})"
+  defp formatted_suffix(false, _, _), do: ""
 
   defp newline_if_complete(total, total), do: "\n"
   defp newline_if_complete(_, _), do: ""

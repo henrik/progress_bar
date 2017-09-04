@@ -91,11 +91,19 @@ defmodule DeterminateTest do
     assert bar =~ IO.chardata_to_string([" ", IO.ANSI.reset])
   end
 
-  test "bytes: true" do
+  test "suffix: :bytes" do
     mb = 1_000_000
-    format = [bytes: true, width: @width]
+    format = [suffix: :bytes, width: @width]
     assert_bar ProgressBar.render(0, mb, format)      == "|                                                                                                    |   0% (0.00/1.00 MB)"
     assert_bar ProgressBar.render((mb/2), mb, format) == "|==================================================                                                  |  50% (0.50/1.00 MB)"
     assert_bar ProgressBar.render(mb, mb, format)     == "|====================================================================================================| 100% (1.00 MB)"
+  end
+
+  test "suffix: :count" do
+    mb = 100
+    format = [suffix: :count, width: @width]
+    assert_bar ProgressBar.render(0, mb, format)      == "|                                                                                                    |   0% (0/100)"
+    assert_bar ProgressBar.render(50, mb, format) == "|==================================================                                                  |  50% (50/100)"
+    assert_bar ProgressBar.render(mb, mb, format)     == "|====================================================================================================| 100% (100)"
   end
 end
