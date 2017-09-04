@@ -87,7 +87,7 @@ defmodule IndeterminateTest do
   test "passes through the function's return value" do
     capture_io fn ->
       value = ProgressBar.render_indeterminate(fn -> :fun_return end)
-      send self, value
+      send self(), value
     end
 
     assert_received :fun_return

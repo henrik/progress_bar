@@ -68,7 +68,7 @@ defmodule SpinnerTest do
   test "passes through the function's return value" do
     capture_io fn ->
       value = ProgressBar.render_spinner(fn -> :fun_return end)
-      send self, value
+      send self(), value
     end
 
     assert_received :fun_return
@@ -88,7 +88,7 @@ defmodule SpinnerTest do
 
   defp split_frames(string) do
     string
-    |> String.strip
+    |> String.trim()
     |> String.split(Utils.ansi_prefix)
     |> Enum.reject(&(&1 == ""))
   end

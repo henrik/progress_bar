@@ -38,10 +38,10 @@ defmodule BytesTest do
   end
 
   defp mb_to_bytes(mb) do
-    mb * @mb |> trunc
+    trunc(mb * @mb)
   end
 
   defp kb_to_bytes(kb) do
-    kb * @kb |> trunc
+    trunc(kb * @kb)
   end
 end

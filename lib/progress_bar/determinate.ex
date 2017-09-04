@@ -36,7 +36,7 @@ defmodule ProgressBar.Determinate do
 
   defp formatted_percent(false, _), do: ""
   defp formatted_percent(true, number) do
-    " " <> String.rjust(Integer.to_string(number), 3) <> "%"
+    " " <> String.pad_leading(Integer.to_string(number), 3) <> "%"
   end
 
   defp bytes(false, _, _), do: ""
