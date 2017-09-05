@@ -7,7 +7,6 @@ defmodule ProgressBar.Determinate do
     left: "|",
     right: "|",
     percent: true,
-    bytes: false,
     suffix: false,
     bar_color: [],
     blank_color: [],
@@ -16,16 +15,13 @@ defmodule ProgressBar.Determinate do
 
   def render(current, total, custom_format \\ @default_format)
   def render(current, total, custom_format) when current <= total do
-    format =
-      @default_format
-      |> Keyword.merge(custom_format)
-      |> Enum.into(%{})
+    format = Keyword.merge(@default_format, custom_format)
 
     percent = current / total * 100 |> round
 
     suffix = [
       formatted_percent(format[:percent], percent),
-      format |> get_suffix() |> formatted_suffix(current, total),
+      formatted_suffix(format[:suffix], current, total),
       newline_if_complete(current, total),
     ]
 
@@ -38,9 +34,6 @@ defmodule ProgressBar.Determinate do
   end
 
   # Private
-
-  defp get_suffix(%{suffix: false, bytes: true}), do: :bytes
-  defp get_suffix(%{suffix: suffix}), do: suffix
 
   defp formatted_percent(false, _) do
     ""

@@ -102,8 +102,8 @@ defmodule DeterminateTest do
   test "suffix: :count" do
     mb = 100
     format = [suffix: :count, width: @width]
-    assert_bar ProgressBar.render(0, mb, format)      == "|                                                                                                    |   0% (0/100)"
+    assert_bar ProgressBar.render(0, mb, format)  == "|                                                                                                    |   0% (0/100)"
     assert_bar ProgressBar.render(50, mb, format) == "|==================================================                                                  |  50% (50/100)"
-    assert_bar ProgressBar.render(mb, mb, format)     == "|====================================================================================================| 100% (100)"
+    assert_bar ProgressBar.render(mb, mb, format) == "|====================================================================================================| 100% (100)"
   end
 end
