@@ -17,7 +17,7 @@ defmodule ProgressBar.Bytes do
 
   defp format_without_unit(bytes, bytes_to_determine_unit) do
     {divisor, _} = divisor_and_unit(bytes_to_determine_unit)
-    bytes / divisor |> to_s
+    to_s(bytes / divisor)
   end
 
   defp divisor_and_unit(bytes) when bytes < @mb, do: {@kb, "KB"}
