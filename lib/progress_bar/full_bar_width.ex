@@ -7,7 +7,7 @@ defmodule ProgressBar.FullBarWidth do
 
   def determine(terminal_width_config, other_text) do
     available_width = terminal_width(terminal_width_config)
-    other_width = other_text |> Utils.strip_invisibles |> String.length
+    other_width = other_text |> Utils.strip_invisibles() |> String.length()
     remaining_width = available_width - other_width
 
     clamp(remaining_width, @min_bar_width, @max_bar_width)
@@ -15,7 +15,7 @@ defmodule ProgressBar.FullBarWidth do
 
   defp terminal_width(config) do
     case config do
-      :auto -> ProgressBar.TerminalWidth.determine
+      :auto -> ProgressBar.TerminalWidth.determine()
       fixed_value -> fixed_value
     end
   end

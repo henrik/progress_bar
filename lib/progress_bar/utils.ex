@@ -1,9 +1,12 @@
 defmodule ProgressBar.Utils do
   def ansi_prefix do
     [
-      ansi_clear_line(), # So a shorter line can replace a previous, longer line.
-      "\r", # Back to beginning of line.
-    ] |> Enum.join
+      # So a shorter line can replace a previous, longer line.
+      ansi_clear_line(),
+      # Back to beginning of line.
+      "\r"
+    ]
+    |> Enum.join()
   end
 
   def strip_invisibles(string) do
@@ -11,8 +14,9 @@ defmodule ProgressBar.Utils do
   end
 
   def color(content, []), do: content
+
   def color(content, ansi_codes) do
-    [ ansi_codes, content, IO.ANSI.reset ]
+    [ansi_codes, content, IO.ANSI.reset()]
   end
 
   defp ansi_clear_line do

@@ -4,13 +4,13 @@ defmodule ProgressBar.Mixfile do
   def project do
     [
       app: :progress_bar,
-      version: "1.6.1",
-      elixir: "~> 1.3",
+      version: "1.6.2",
+      elixir: "~> 1.7",
       description: "Command-line progress bars and spinners.",
       package: package(),
-      build_embedded: Mix.env == :prod,
-      start_permanent: Mix.env == :prod,
-      deps: deps(),
+      build_embedded: Mix.env() == :prod,
+      start_permanent: Mix.env() == :prod,
+      deps: deps()
     ]
   end
 
@@ -28,7 +28,7 @@ defmodule ProgressBar.Mixfile do
 
   defp deps do
     [
-      {:decimal, "~> 1.0"},
+      {:decimal, "~> 1.0"}
     ]
   end
 end
