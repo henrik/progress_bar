@@ -41,6 +41,8 @@ defmodule ProgressBar.BarFormatter do
     ProgressBar.FullBarWidth.determine(format[:width], other_text)
   end
 
+  defp repeat("", _), do: ""
+
   defp repeat(bar, width) do
     bar
     |> String.graphemes()
