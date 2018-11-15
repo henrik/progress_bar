@@ -2,7 +2,7 @@ defmodule UtilsTest do
   use ExUnit.Case
 
   test "strip_invisibles: strips ANSI" do
-    input = IO.chardata_to_string([IO.ANSI.red, "hi", IO.ANSI.reset])
+    input = IO.chardata_to_string([IO.ANSI.red(), "hi", IO.ANSI.reset()])
     assert ProgressBar.Utils.strip_invisibles(input) == "hi"
   end
 

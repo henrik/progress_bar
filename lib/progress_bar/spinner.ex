@@ -6,13 +6,15 @@ defmodule ProgressBar.Spinner do
     spinner_color: [],
     text: "Loading…",
     done: "Loaded.",
-    interval: 100,
+    interval: 100
   ]
 
   @themes [
     strokes: ~w[/ - \\ |],
-    braille: ~w[⠋ ⠙ ⠹ ⠸ ⠼ ⠴ ⠦ ⠧ ⠇ ⠏],  # Stolen from WebTranslateIt
-    bars:    ~w[▁ ▂ ▃ ▄ ▅ ▆ ▇ █ ▇ ▆ ▅ ▄ ▃],  # http://stackoverflow.com/a/2685827/6962
+    # Stolen from WebTranslateIt
+    braille: ~w[⠋ ⠙ ⠹ ⠸ ⠼ ⠴ ⠦ ⠧ ⠇ ⠏],
+    # http://stackoverflow.com/a/2685827/6962
+    bars: ~w[▁ ▂ ▃ ▄ ▅ ▆ ▇ █ ▇ ▆ ▅ ▄ ▃]
   ]
 
   def render(custom_format \\ @default_format, fun) do
@@ -20,13 +22,13 @@ defmodule ProgressBar.Spinner do
 
     config = [
       interval: format[:interval],
-      render_frame: fn (count) -> render_frame(format, count) end,
-      render_done:  fn -> render_done(format[:done]) end,
+      render_frame: fn count -> render_frame(format, count) end,
+      render_done: fn -> render_done(format[:done]) end
     ]
 
     ProgressBar.AnimationServer.start(config)
     value = fun.()
-    ProgressBar.AnimationServer.stop
+    ProgressBar.AnimationServer.stop()
     value
   end
 
@@ -35,23 +37,24 @@ defmodule ProgressBar.Spinner do
     index = rem(count, length(frames))
     frame = Enum.at(frames, index)
 
-    IO.write [
-      Utils.ansi_prefix,
+    IO.write([
+      Utils.ansi_prefix(),
       Utils.color(frame, format[:spinner_color]),
       " ",
-      format[:text],
-    ]
+      format[:text]
+    ])
   end
 
   defp render_done(:remove) do
-    IO.write Utils.ansi_prefix
+    IO.write(Utils.ansi_prefix())
   end
+
   defp render_done(text) do
-    IO.write [
-      Utils.ansi_prefix,
+    IO.write([
+      Utils.ansi_prefix(),
       text,
-      "\n",
-    ]
+      "\n"
+    ])
   end
 
   defp get_frames(theme) when is_atom(theme), do: Keyword.fetch!(@themes, theme)

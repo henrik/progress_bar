@@ -26,6 +26,6 @@ defmodule ProgressBar.Bytes do
   defp to_s(number) do
     # Always show 2 decimals. Looks jumpy otherwise when numbers change.
     # Float.floor has surprising behaviour.
-    number |> Decimal.new |> Decimal.round(2, :floor) |> Decimal.to_string
+    number |> Decimal.new() |> Decimal.round(2, :floor) |> Decimal.to_string()
   end
 end

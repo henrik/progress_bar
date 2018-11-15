@@ -7,7 +7,7 @@ defmodule ProgressBar.Indeterminate do
     bars_color: [],
     done_color: [],
     interval: 500,
-    width: :auto,
+    width: :auto
   ]
 
   def render(custom_format \\ @default_format, fun) do
@@ -15,13 +15,13 @@ defmodule ProgressBar.Indeterminate do
 
     config = [
       interval: format[:interval],
-      render_frame: fn (count) -> render_frame(format, count) end,
-      render_done:  fn -> render_done(format) end,
+      render_frame: fn count -> render_frame(format, count) end,
+      render_done: fn -> render_done(format) end
     ]
 
     ProgressBar.AnimationServer.start(config)
     value = fun.()
-    ProgressBar.AnimationServer.stop
+    ProgressBar.AnimationServer.stop()
     value
   end
 
