@@ -4,7 +4,7 @@ defmodule ProgressBar.Mixfile do
   def project do
     [
       app: :progress_bar,
-      version: "1.6.2",
+      version: "1.7.0",
       elixir: "~> 1.3",
       description: "Command-line progress bars and spinners.",
       package: package(),
