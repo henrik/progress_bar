@@ -129,12 +129,25 @@ Instead of:
 
     …============| 100%
 
-#### `bytes: true`
+#### `suffix: :count`
+
+This option causes the values to be printed on the suffix of your progress bar.
+
+``` elixir
+ProgressBar.render(9_751, 10_000, suffix: :count)
+```
+
+Output:
+
+    …=========   |  97% (9751/10000)
+
+
+#### `suffix: :bytes`
 
 This option causes the values to be treated as bytes of data, showing those amounts next to the bar.
 
 ``` elixir
-ProgressBar.render(2_034_237, 2_097_152, bytes: true)
+ProgressBar.render(2_034_237, 2_097_152, suffix: :bytes)
 ```
 
 Output:
