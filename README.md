@@ -299,7 +299,7 @@ ProgressBar.render_spinner([frames: :braille], fn -> end)
 
 Name                 | Frames
 -------------------- | ---------------------------
-`:strokes` (default) | `/ - \ |`
+`:strokes` (default) | `/ - \ \|`
 `:braille`           | `⠋ ⠙ ⠹ ⠸ ⠼ ⠴ ⠦ ⠧ ⠇ ⠏`
 `:bars`              | `▁ ▂ ▃ ▄ ▅ ▆ ▇ █ ▇ ▆ ▅ ▄ ▃`
 
