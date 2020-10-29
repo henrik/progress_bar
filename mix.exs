@@ -15,7 +15,7 @@ defmodule ProgressBar.Mixfile do
   end
 
   def application do
-    [applications: [:logger]]
+    [extra_applications: [:logger]]
   end
 
   def package do
