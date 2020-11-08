@@ -15,7 +15,7 @@ defmodule ProgressBar.Mixfile do
   end
 
   def application do
-    [applications: [:logger]]
+    [extra_applications: [:logger]]
   end
 
   def package do
@@ -28,7 +28,7 @@ defmodule ProgressBar.Mixfile do
 
   defp deps do
     [
-      {:decimal, "~> 1.0"}
+      {:decimal, "~> 2.0"}
     ]
   end
 end
