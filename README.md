@@ -1,7 +1,13 @@
 # ProgressBar for Elixir
 
 [![Build Status](https://travis-ci.org/henrik/progress_bar.svg?branch=master)](https://travis-ci.org/henrik/progress_bar)
-[![Hex](https://img.shields.io/hexpm/v/progress_bar.svg)](https://hex.pm/packages/progress_bar)
+[![Module Version](https://img.shields.io/hexpm/v/progress_bar.svg)](https://hex.pm/packages/progress_bar)
+[![Hex Docs](https://img.shields.io/badge/hex-docs-lightgreen.svg)](https://hexdocs.pm/progress_bar/)
+[![Total Download](https://img.shields.io/hexpm/dt/progress_bar.svg)](https://hex.pm/packages/progress_bar)
+[![License](https://img.shields.io/hexpm/l/progress_bar.svg)](https://github.com/henrik/progress_bar/blob/master/LICENSE.md)
+[![Last Updated](https://img.shields.io/github/last-commit/henrik/progress_bar.svg)](https://github.com/henrik/progress_bar/commits/master)
+
+Command-line progress bars and spinners.
 
 ![Screenshot](https://s3.amazonaws.com/f.cl.ly/items/2N3n440S0d2S2n371j0G/progress_bar.gif)
 
@@ -13,9 +19,10 @@
 
 ## Usage
 
-You can render
+You can render:
   * [progress bars](#progress-bars),
-  * [indeterminate bars](#indeterminate-progress-bars) that animate but don't indicate the current progress,
+  * [indeterminate bars](#indeterminate-progress-bars) that animate but don't
+    indicate the current progress,
   * and [indeterminate spinners](#spinners).
 
 Do you have a use case not listed below? Please open an issue or pull request!
@@ -337,11 +344,14 @@ Then fetch it:
     mix deps.get
 
 
-## Also see
+## See Also
 
 * [simple_bar](https://github.com/jeffreybaird/simple_bar)
 
 
-## Credits and license
+## Copyright and license
 
-By Henrik Nyh and [contributors](https://github.com/henrik/progress_bar/graphs/contributors) 2015-09-19 under the MIT license.
+Copyright (c) 2015 Henrik Nyh and [contributors](https://github.com/henrik/progress_bar/graphs/contributors)
+
+Released under the MIT License, which can be found in the repository in
+[LICENSE.md](./LICENSE.md).
