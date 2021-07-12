@@ -14,7 +14,7 @@ Command-line progress bars and spinners.
 * [Usage](#usage)
 * [Examples](#examples)
 * [Installation](#installation)
-* [Credits and license](#credits-and-license)
+* [License](#license)
 
 
 ## Usage
