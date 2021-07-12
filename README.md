@@ -349,9 +349,6 @@ Then fetch it:
 * [simple_bar](https://github.com/jeffreybaird/simple_bar)
 
 
-## Copyright and license
+## License
 
-Copyright (c) 2015 Henrik Nyh and [contributors](https://github.com/henrik/progress_bar/graphs/contributors)
-
-Released under the MIT License, which can be found in the repository in
-[LICENSE.md](./LICENSE.md).
+Released under [the MIT License](./LICENSE.md).
