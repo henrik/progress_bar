@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.0.2
+
+* Treats negative `current` value as 0 instead of crashing. Thanks to Pavel Makarenko!
+
 ## 2.0.1
 
 * Fix Elixir 1.11 warnings. Thanks to Michael Vigor!
