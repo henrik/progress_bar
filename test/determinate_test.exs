@@ -13,6 +13,11 @@ defmodule DeterminateTest do
 
   test "renders a bar" do
     assert_bar(
+      ProgressBar.render(-1, 100, @format) ==
+        "|                                                                                                    |   0%"
+    )
+
+    assert_bar(
       ProgressBar.render(0, 3, @format) ==
         "|                                                                                                    |   0%"
     )

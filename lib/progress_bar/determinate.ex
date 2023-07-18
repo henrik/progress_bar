@@ -16,7 +16,7 @@ defmodule ProgressBar.Determinate do
   def render(current, total, custom_format \\ @default_format) when current <= total do
     format = Keyword.merge(@default_format, custom_format)
 
-    percent = (current / total * 100) |> round
+    percent = max((current / total * 100) |> round, 0)
 
     suffix = [
       formatted_percent(format[:percent], percent),
