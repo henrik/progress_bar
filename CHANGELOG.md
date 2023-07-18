@@ -1,5 +1,9 @@
 # Changelog
 
+## 3.0.0
+
+* Fixes deprecation warning by dropping support for Elixir <1.9.
+
 ## 2.0.2
 
 * Treats negative `current` value as 0 instead of crashing. Thanks to Pavel Makarenko!

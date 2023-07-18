@@ -6,7 +6,7 @@ defmodule ProgressBar.Mixfile do
   def project do
     [
       app: :progress_bar,
-      version: "2.0.2",
+      version: "3.0.0",
       elixir: "~> 1.9",
       build_embedded: Mix.env() == :prod,
       start_permanent: Mix.env() == :prod,
