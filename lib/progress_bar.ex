@@ -22,4 +22,32 @@ defmodule ProgressBar do
   def render_spinner(custom_format, fun) do
     ProgressBar.Spinner.render(custom_format, fun)
   end
+
+  def from_enum(list, fun, opts \\ []) do
+    total = Enum.count(list)
+
+    ProgressBar.render(0, total, opts)
+
+    list
+    |> Enum.with_index(1)
+    |> Enum.each(fn {el, i} ->
+      fun.(el)
+      ProgressBar.render(i, total, opts)
+    end)
+
+    list
+  end
+
+  def from_steam(list, opts \\ []) do
+    total = Enum.count(list)
+
+    ProgressBar.render(0, total, opts)
+
+    list
+    |> Stream.with_index(1)
+    |> Stream.map(fn {el, i} ->
+      ProgressBar.render(i, total, opts)
+      el
+    end)
+  end
 end
