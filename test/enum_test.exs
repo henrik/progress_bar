@@ -3,13 +3,13 @@ defmodule EnumTest do
 
   import ExUnit.CaptureIO
 
-  test "it should work with enums" do
+  test "it works with enums" do
     capture_io(fn ->
       ProgressBar.from_enum([1, 2, 3, 4, 5], fn i -> i + 1 end)
     end)
   end
 
-  test "it should work with streams" do
+  test "it works with streams" do
     capture_io(fn ->
       list =
         [1, 2, 3, 4, 5]
