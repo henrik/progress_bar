@@ -38,7 +38,7 @@ defmodule ProgressBar do
     list
   end
 
-  def from_steam(list, opts \\ []) do
+  def from_stream(list, opts \\ []) do
     total = Enum.count(list)
 
     ProgressBar.render(0, total, opts)
