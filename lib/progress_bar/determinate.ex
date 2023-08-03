@@ -10,7 +10,7 @@ defmodule ProgressBar.Determinate do
     suffix: false,
     bar_color: [],
     blank_color: [],
-    width: :auto,
+    width: :auto
   ]
 
   def render(current, total, custom_format \\ @default_format) when current <= total do
@@ -21,7 +21,7 @@ defmodule ProgressBar.Determinate do
     suffix = [
       formatted_percent(format[:percent], percent),
       formatted_suffix(format[:suffix], current, total),
-      newline_if_complete(current, total),
+      newline_if_complete(current, total)
     ]
 
     ProgressBar.BarFormatter.write(
@@ -35,6 +35,7 @@ defmodule ProgressBar.Determinate do
   # Private
 
   defp formatted_percent(false, _), do: ""
+
   defp formatted_percent(true, number) do
     number
     |> Integer.to_string()

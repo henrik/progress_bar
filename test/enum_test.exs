@@ -5,7 +5,9 @@ defmodule EnumTest do
 
   test "it works with enums" do
     capture_io(fn ->
-      ProgressBar.from_enum([1, 2, 3, 4, 5], fn i -> i + 1 end)
+      list = ProgressBar.from_enum([1, 2, 3, 4, 5], fn i -> i + 1 end)
+
+      assert list == [1, 2, 3, 4, 5]
     end)
   end
 
@@ -13,7 +15,7 @@ defmodule EnumTest do
     capture_io(fn ->
       list =
         [1, 2, 3, 4, 5]
-        |> ProgressBar.from_steam()
+        |> ProgressBar.from_stream()
         |> Enum.into([])
 
       assert list == [1, 2, 3, 4, 5]
