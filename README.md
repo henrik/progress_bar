@@ -64,6 +64,26 @@ Enum.each 1..100, fn (i) ->
 end
 ```
 
+But you can also simplify working with `Enum`:
+
+```elixir
+1..100
+|> ProgressBar.from_enum(fn (i) -> 
+  :timer.sleep 25
+end)
+```
+
+Or even can work with `Stream` (be careful, it will use a  `Stream.count/1` to determine total number of elements):
+
+```elixir
+1..100
+|> ProgressBar.from_stream()
+|> Enum.map(fn (i) -> 
+  :timer.sleep 25
+end)
+|> Enum.into([])
+```
+
 #### Width
 
 The bar will automatically set its width to fit the terminal. If the terminal width can't be determined automatically, an 80 column width will be assumed.
